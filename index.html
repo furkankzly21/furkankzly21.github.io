@@ -1,185 +1,221 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Furkan - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            background-color: #0a0a0a;
-            color: #f5f5f5;
-            font-family: 'Inter', sans-serif;
-        }
-        .gradient-text {
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .nav-link {
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            transition: width 0.3s;
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        .project-card {
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        .custom-shadow {
-            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
-        }
-        .tech-badge {
-            background-color: #1a1a1a;
-            border: 1px solid #333;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Furkan - Portfolyo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #f5f5f5;
+      font-family: 'Inter', sans-serif;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      transition: width 0.3s;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .project-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .custom-shadow {
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+    }
+    .tech-badge {
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+    }
+  </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="bg-black border-b border-zinc-800 fixed w-full z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="#" class="text-xl font-bold gradient-text">Furkan</a>
-                </div>
-                <div class="flex items-center space-x-8">
-                    <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors">Hakkımda</a>
-                    <a href="#projects" class="nav-link text-gray-300 hover:text-white transition-colors">Projeler</a>
-                    <a href="#skills" class="nav-link text-gray-300 hover:text-white transition-colors">Yetenekler</a>
-                    <a href="#contact" class="nav-link text-gray-300 hover:text-white transition-colors">İletişim</a>
-                </div>
-            </div>
+
+  <!-- Navbar -->
+  <nav class="bg-black border-b border-zinc-800 fixed w-full z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <a href="#" class="text-xl font-bold gradient-text">Furkan</a>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="pt-24 pb-12 bg-black">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Merhaba, ben <span class="gradient-text">Furkan</span></h1>
-                    <p class="text-xl text-gray-300 mb-6">Software Developer & Front-end Developer</p>
-                    <p class="text-gray-400 mb-8">Modern ve kullanıcı dostu web uygulamaları geliştiren tutkulu bir yazılım geliştiriciyim. Yenilikçi teknolojileri kullanarak işlevsel ve etkileyici dijital deneyimler yaratıyorum.</p>
-                    <div class="flex space-x-4">
-                        <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white font-medium hover:opacity-90 transition-opacity">İletişime Geç</a>
-                        <a href="#projects" class="px-6 py-3 bg-zinc-800 rounded-lg text-white font-medium hover:bg-zinc-700 transition-colors">Projelerimi Gör</a>
-                    </div>
-                </div>
-                <div class="md:w-5/12">
-                    <div class="relative">
-                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-zinc-800 custom-shadow mx-auto">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80" 
-                                 alt="Furkan" class="w-full h-full object-cover">
-                        </div>
-                        <div class="absolute -bottom-4 -right-4 bg-black p-4 rounded-full border border-zinc-800">
-                            <i class="fas fa-code text-3xl gradient-text"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="flex items-center space-x-8">
+          <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors">Hakkımda</a>
+          <a href="#projects" class="nav-link text-gray-300 hover:text-white transition-colors">Projeler</a>
+          <a href="#skills" class="nav-link text-gray-300 hover:text-white transition-colors">Yetenekler</a>
+          <a href="#contact" class="nav-link text-gray-300 hover:text-white transition-colors">İletişim</a>
         </div>
-    </section>
+      </div>
+    </div>
+  </nav>
 
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-zinc-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Hakkımda</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="bg-black p-8 rounded-xl border border-zinc-800 custom-shadow">
-                    <h3 class="text-2xl font-semibold mb-4">Kişisel Bilgiler</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-user text-blue-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400 text-sm">İsim</p>
-                                <p class="text-white">Furkan</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-envelope text-blue-400"></i>
-                            </div>
-                            <div>
-                                <p class="text-gray-400 text-sm">Email</p>
-                                <p class="text-white">furkan@example.com</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-map-semibold mb-2">Task Management App</h3>
-                        <p class="text-gray-400 mb-4">Ekiplerin görevlerini kolayca yönetebileceği, sürükle-bırak arayüzüne sahip bir uygulama.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Vue.js</span>
-                            <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Firebase</span>
-                            <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Tailwind CSS</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors flex items-center">
-                                <span>Demo</span>
-                                <i class="fas fa-external-link-alt ml-1"></i>
-                            </a>
-                            <a href="#" class="text-purple-400 hover:text-purple-300 transition-colors flex items-center">
-                                <span>GitHub</span>
-                                <i class="fab fa-github ml-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="project-card bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1772&q=80" 
-                         alt="Weather Dashboard" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Weather Dashboard</h3>
-                        <p class="text-gray-400 mb-4">Güncel hava durumu bilgilerini ve tahminleri görselleştiren interaktif bir dashboard.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">JavaScript</span>
-                            <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">OpenWeather API</span>
-                            <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Chart.js</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <a href="#" class="text-blue-400 hover:text-blue-300 transition-colors flex items-center">
-                                <span>Demo</span>
-                                <i class="fas fa-external-link-alt ml-1"></i>
-                            </a>
-                            <a href="#" class="text-purple-400 hover:text-purple-300 transition-colors flex items-center">
-                                <span>GitHub</span>
-                                <i class="fab fa-github ml-1"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- Hero Section -->
+  <section class="pt-24 pb-12 bg-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">Merhaba, ben <span class="gradient-text">Furkan</span></h1>
+          <p class="text-xl text-gray-300 mb-6">Software Developer & Front-end Developer</p>
+          <p class="text-gray-400 mb-8">Modern ve kullanıcı dostu web uygulamaları geliştiren tutkulu bir yazılım geliştiriciyim. Yenilikçi teknolojileri kullanarak işlevsel ve etkileyici dijital deneyimler yaratıyorum.</p>
+          <div class="flex space-x-4">
+            <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white font-medium hover:opacity-90 transition-opacity">İletişime Geç</a>
+            <a href="#projects" class="px-6 py-3 bg-zinc-800 rounded-lg text-white font-medium hover:bg-zinc-700 transition-colors">Projelerimi Gör</a>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-16 bg-zinc-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Yeteneklerim</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Frontend -->
-                <div class="bg-black p-8 rounded-xl border border-zinc-800 custom-shadow">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-blue-900/20 rounded-lg flex items-center justify-center mr-4">
-                            <i class="fas fa-code text-blue-400 text-xl"></i>
-                        </div>
+  <!-- About Section -->
+  <section id="about" class="py-16 bg-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Hakkımda</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div class="bg-black p-8 rounded-xl border border-zinc-800 custom-shadow">
+          <h3 class="text-2xl font-semibold mb-4">Kişisel Bilgiler</h3>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-user text-blue-400"></i>
+              </div>
+              <div>
+                <p class="text-gray-400 text-sm">İsim</p>
+                <p class="text-white">Furkan</p>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-envelope text-blue-400"></i>
+              </div>
+              <div>
+                <p class="text-gray-400 text-sm">Email</p>
+                <p class="text-white">furkan@example.com</p>
+              </div>
+            </div>
+            <div class="flex items-center">
+              <div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-map-marker-alt text-blue-400"></i>
+              </div>
+              <div>
+                <p class="text-gray-400 text-sm">Konum</p>
+                <p class="text-white">İstanbul, Türkiye</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Projects Section -->
+  <section id="projects" class="py-16 bg-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Projelerim</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <!-- Project 1 -->
+        <div class="project-card bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Görev Yönetim Uygulaması</h3>
+            <p class="text-gray-400 mb-4">Sürükle-bırak arayüzlü görev yönetim sistemi.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Vue.js</span>
+              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Firebase</span>
+              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Tailwind CSS</span>
+            </div>
+            <div class="flex justify-between">
+              <a href="#" class="text-blue-400 hover:text-blue-300 flex items-center">Demo<i class="fas fa-external-link-alt ml-1"></i></a>
+              <a href="#" class="text-purple-400 hover:text-purple-300 flex items-center">GitHub<i class="fab fa-github ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Hava Durumu Dashboard</h3>
+            <p class="text-gray-400 mb-4">API ile çalışan etkileşimli hava durumu arayüzü.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">JavaScript</span>
+              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">OpenWeather API</span>
+              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Chart.js</span>
+            </div>
+            <div class="flex justify-between">
+              <a href="#" class="text-blue-400 hover:text-blue-300 flex items-center">Demo<i class="fas fa-external-link-alt ml-1"></i></a>
+              <a href="#" class="text-purple-400 hover:text-purple-300 flex items-center">GitHub<i class="fab fa-github ml-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-16 bg-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Yeteneklerim</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-black p-8 rounded-xl border border-zinc-800 custom-shadow">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-blue-900/20 rounded-lg flex items-center justify-center mr-4">
+              <i class="fas fa-code text-blue-400 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold">Frontend</h3>
+          </div>
+          <ul class="list-disc list-inside text-gray-300">
+            <li>HTML, CSS, JavaScript</li>
+            <li>React, Vue</li>
+            <li>Tailwind CSS, Bootstrap</li>
+          </ul>
+        </div>
+        <!-- Backend and Other Skills Cards buraya eklenebilir -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-black">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-8 gradient-text">İletişime Geç</h2>
+      <p class="text-gray-400 mb-6">Benimle projeler, iş teklifleri ya da merak ettiğiniz konular için iletişime geçebilirsiniz.</p>
+      <div class="space-y-4 text-left">
+        <div class="flex items-center">
+          <i class="fas fa-envelope text-blue-400 w-8"></i>
+          <span class="text-white ml-2">furkan@example.com</span>
+        </div>
+        <div class="flex items-center">
+          <i class="fas fa-map-marker-alt text-blue-400 w-8"></i>
+          <span class="text-white ml-2">İstanbul, Türkiye</span>
+        </div>
+        <div class="flex items-center">
+          <i class="fab fa-linkedin text-blue-400 w-8"></i>
+          <a href="#" class="ml-2 text-white hover:underline">LinkedIn Profilim</a>
+        </div>
+        <div class="flex items-center">
+          <i class="fab fa-github text-purple-400 w-8"></i>
+          <a href="#" class="ml-2 text-white hover:underline">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
