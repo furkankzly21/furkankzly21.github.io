@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://medusabest.github.io/sitemap.xml
