@@ -1,221 +1,129 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Furkan - Portfolyo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>İletişim Formu - Siyah Tema</title>
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    body {
-      background-color: #0a0a0a;
-      color: #f5f5f5;
-      font-family: 'Inter', sans-serif;
+  <script>
+    // Tailwind'de dark modunu sınıf ile aktive et
+    tailwind.config = {
+      darkMode: 'class',
     }
-    .gradient-text {
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .nav-link {
-      position: relative;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -2px;
-      left: 0;
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-      transition: width 0.3s;
-    }
-    .nav-link:hover::after {
-      width: 100%;
-    }
-    .project-card {
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-    .custom-shadow {
-      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
-    }
-    .tech-badge {
-      background-color: #1a1a1a;
-      border: 1px solid #333;
-    }
-  </style>
+  </script>
+  <!-- React & ReactDOM CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- Babel for JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-<body>
+<body class="bg-black text-gray-200 min-h-screen flex items-center justify-center p-6">
+  <div id="root" class="w-full max-w-4xl"></div>
 
-  <!-- Navbar -->
-  <nav class="bg-black border-b border-zinc-800 fixed w-full z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between h-16">
-        <div class="flex items-center">
-          <a href="#" class="text-xl font-bold gradient-text">Furkan</a>
-        </div>
-        <div class="flex items-center space-x-8">
-          <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors">Hakkımda</a>
-          <a href="#projects" class="nav-link text-gray-300 hover:text-white transition-colors">Projeler</a>
-          <a href="#skills" class="nav-link text-gray-300 hover:text-white transition-colors">Yetenekler</a>
-          <a href="#contact" class="nav-link text-gray-300 hover:text-white transition-colors">İletişim</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+  <script type="text/babel">
 
-  <!-- Hero Section -->
-  <section class="pt-24 pb-12 bg-black">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row items-center justify-between">
-        <div class="md:w-1/2 mb-10 md:mb-0">
-          <h1 class="text-4xl md:text-5xl font-bold mb-4">Merhaba, ben <span class="gradient-text">Furkan</span></h1>
-          <p class="text-xl text-gray-300 mb-6">Software Developer & Front-end Developer</p>
-          <p class="text-gray-400 mb-8">Modern ve kullanıcı dostu web uygulamaları geliştiren tutkulu bir yazılım geliştiriciyim. Yenilikçi teknolojileri kullanarak işlevsel ve etkileyici dijital deneyimler yaratıyorum.</p>
-          <div class="flex space-x-4">
-            <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white font-medium hover:opacity-90 transition-opacity">İletişime Geç</a>
-            <a href="#projects" class="px-6 py-3 bg-zinc-800 rounded-lg text-white font-medium hover:bg-zinc-700 transition-colors">Projelerimi Gör</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="py-16 bg-zinc-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Hakkımda</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div class="bg-black p-8 rounded-xl border border-zinc-800 custom-shadow">
-          <h3 class="text-2xl font-semibold mb-4">Kişisel Bilgiler</h3>
-          <div class="space-y-4">
-            <div class="flex items-center">
-              <div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-user text-blue-400"></i>
-              </div>
-              <div>
-                <p class="text-gray-400 text-sm">İsim</p>
-                <p class="text-white">Furkan</p>
-              </div>
+    function Contact() {
+      return (
+        <section id="contact" className="py-20 bg-black text-gray-200 rounded-lg shadow-lg px-6">
+          <div className="container mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">İletişime Geç</h2>
+              <div className="w-16 h-1 bg-blue-600 mx-auto mb-6"></div>
+              <p className="max-w-2xl mx-auto">
+                Proje fikirleriniz veya sorularınız için benimle iletişime geçebilirsiniz
+              </p>
             </div>
-            <div class="flex items-center">
-              <div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-envelope text-blue-400"></i>
+            
+            <div className="max-w-3xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-8 mb-8">
+                <div className="bg-gray-900 p-6 rounded-lg shadow-md">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-blue-900 rounded-full flex items-center justify-center text-blue-400 mr-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-bold">Email</h3>
+                  </div>
+                  <p>furkan@example.com</p>
+                </div>
+                
+                <div className="bg-gray-900 p-6 rounded-lg shadow-md">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-blue-900 rounded-full flex items-center justify-center text-blue-400 mr-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-bold">Konum</h3>
+                  </div>
+                  <p>Diyarbakır, Türkiye</p>
+                </div>
               </div>
-              <div>
-                <p class="text-gray-400 text-sm">Email</p>
-                <p class="text-white">furkan21@gmail.com</p>
-              </div>
-            </div>
-            <div class="flex items-center">
-              <div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-map-marker-alt text-blue-400"></i>
-              </div>
-              <div>
-                <p class="text-gray-400 text-sm">Konum</p>
-                <p class="text-white">İstanbul, Türkiye</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="py-16 bg-zinc-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Projelerim</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <!-- Project 1 -->
-        <div class="project-card bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Görev Yönetim Uygulaması</h3>
-            <p class="text-gray-400 mb-4">Sürükle-bırak arayüzlü görev yönetim sistemi.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Vue.js</span>
-              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Firebase</span>
-              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Tailwind CSS</span>
-            </div>
-            <div class="flex justify-between">
-              <a href="#" class="text-blue-400 hover:text-blue-300 flex items-center">Demo<i class="fas fa-external-link-alt ml-1"></i></a>
-              <a href="#" class="text-purple-400 hover:text-purple-300 flex items-center">GitHub<i class="fab fa-github ml-1"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="project-card bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Hava Durumu Dashboard</h3>
-            <p class="text-gray-400 mb-4">API ile çalışan etkileşimli hava durumu arayüzü.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">JavaScript</span>
-              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">OpenWeather API</span>
-              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Chart.js</span>
-            </div>
-            <div class="flex justify-between">
-              <a href="#" class="text-blue-400 hover:text-blue-300 flex items-center">Demo<i class="fas fa-external-link-alt ml-1"></i></a>
-              <a href="#" class="text-purple-400 hover:text-purple-300 flex items-center">GitHub<i class="fab fa-github ml-1"></i></a>
+              
+              <form className="bg-gray-900 p-8 rounded-lg shadow-md">
+                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label htmlFor="name" className="block mb-2 text-sm font-medium">İsim</label>
+                    <input 
+                      type="text" 
+                      id="name" 
+                      className="w-full px-4 py-2 border border-gray-700 rounded-lg focus:ring-blue-500 focus:border-blue-500 bg-black text-gray-200" 
+                      placeholder="İsminiz"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block mb-2 text-sm font-medium">Email</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      className="w-full px-4 py-2 border border-gray-700 rounded-lg focus:ring-blue-500 focus:border-blue-500 bg-black text-gray-200" 
+                      placeholder="Email adresiniz"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div className="mb-6">
+                  <label htmlFor="subject" className="block mb-2 text-sm font-medium">Konu</label>
+                  <input 
+                    type="text" 
+                    id="subject" 
+                    className="w-full px-4 py-2 border border-gray-700 rounded-lg focus:ring-blue-500 focus:border-blue-500 bg-black text-gray-200" 
+                    placeholder="Mesaj konusu"
+                    required
+                  />
+                </div>
+                
+                <div className="mb-6">
+                  <label htmlFor="message" className="block mb-2 text-sm font-medium">Mesaj</label>
+                  <textarea 
+                    id="message" 
+                    rows="4" 
+                    className="w-full px-4 py-2 border border-gray-700 rounded-lg focus:ring-blue-500 focus:border-blue-500 bg-black text-gray-200" 
+                    placeholder="Mesajınız..."
+                    required
+                  ></textarea>
+                </div>
+                
+                <button 
+                  type="submit" 
+                  className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+                >
+                  Mesaj Gönder
+                </button>
+              </form>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        </section>
+      );
+    }
 
-  <!-- Skills Section -->
-  <section id="skills" class="py-16 bg-zinc-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Yeteneklerim</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-black p-8 rounded-xl border border-zinc-800 custom-shadow">
-          <div class="flex items-center mb-6">
-            <div class="w-12 h-12 bg-blue-900/20 rounded-lg flex items-center justify-center mr-4">
-              <i class="fas fa-code text-blue-400 text-xl"></i>
-            </div>
-            <h3 class="text-xl font-semibold">Frontend</h3>
-          </div>
-          <ul class="list-disc list-inside text-gray-300">
-            <li>HTML, CSS, JavaScript</li>
-            <li>React, Vue</li>
-            <li>Tailwind CSS, Bootstrap</li>
-          </ul>
-        </div>
-        <!-- Backend and Other Skills Cards buraya eklenebilir -->
-      </div>
-    </div>
-  </section>
+    ReactDOM.createRoot(document.getElementById('root')).render(<Contact />);
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-16 bg-black">
-    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold mb-8 gradient-text">İletişime Geç</h2>
-      <p class="text-gray-400 mb-6">Benimle projeler, iş teklifleri ya da merak ettiğiniz konular için iletişime geçebilirsiniz.</p>
-      <div class="space-y-4 text-left">
-        <div class="flex items-center">
-          <i class="fas fa-envelope text-blue-400 w-8"></i>
-          <span class="text-white ml-2">furkan21@gmail.com</span>
-        </div>
-        <div class="flex items-center">
-          <i class="fas fa-map-marker-alt text-blue-400 w-8"></i>
-          <span class="text-white ml-2">Diyarbakır, Türkiye</span>
-        </div>
-        <div class="flex items-center">
-          <i class="fab fa-linkedin text-blue-400 w-8"></i>
-          <a href="#" class="ml-2 text-white hover:underline">Instagram profilim</a>
-        </div>
-        <div class="flex items-center">
-          <i class="fab fa-github text-purple-400 w-8"></i>
-          <a href="#" class="ml-2 text-white hover:underline">GitHub</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  </script>
 </body>
 </html>
