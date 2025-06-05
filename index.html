@@ -1,133 +1,312 @@
 <!DOCTYPE html>
-<html lang="tr" class="scroll-smooth" >
+<html lang="tr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portföy - Yetenekler & İletişim</title>
+  <title>Furkan - Portfolyo</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
   <style>
-    /* Dark mode toggle için basit destek */
-    html.dark {
-      background-color: #1f2937;
-      color: #d1d5db;
+    body {
+      background-color: #0a0a0a;
+      color: #f5f5f5;
+      font-family: "Inter", sans-serif;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      transition: width 0.3s;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .project-card {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .custom-shadow {
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+    }
+    .tech-badge {
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+    }
+    #backToTop {
+      transition: opacity 0.3s;
     }
   </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-200 transition-colors duration-300">
-
-  <!-- Skills Bölümü -->
-  <section id="skills" class="py-20">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Yeteneklerim</h2>
-        <div class="w-16 h-1 bg-blue-600 mx-auto mb-6"></div>
-        <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          Yazılım geliştirme yolculuğumda öğrendiğim ve geliştirdiğim beceriler
-        </p>
+<body>
+  <!-- Navbar -->
+  <nav
+    class="bg-black border-b border-zinc-800 fixed w-full z-10"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <a href="#" class="text-xl font-bold gradient-text">Furkan</a>
+        </div>
+        <div class="flex items-center space-x-8">
+          <a
+            href="#about"
+            class="nav-link text-gray-300 hover:text-white transition-colors"
+            >Hakkımda</a
+          >
+          <a
+            href="#projects"
+            class="nav-link text-gray-300 hover:text-white transition-colors"
+            >Projeler</a
+          >
+          <a
+            href="#skills"
+            class="nav-link text-gray-300 hover:text-white transition-colors"
+            >Yetenekler</a
+          >
+          <a
+            href="#contact"
+            class="nav-link text-gray-300 hover:text-white transition-colors"
+            >İletişim</a
+          >
+        </div>
       </div>
-      
-      <div class="grid md:grid-cols-2 gap-12">
-        <!-- Frontend -->
-        <div>
-          <h3 class="text-xl font-bold mb-6 flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-            </svg>
-            Frontend Teknolojileri
-          </h3>
-          <div class="space-y-6">
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="font-medium">HTML</span>
-                <span class="text-gray-600 dark:text-gray-400">85%</span>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="pt-24 pb-12 bg-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div
+        class="flex flex-col md:flex-row items-center justify-between"
+      >
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">
+            Merhaba, ben <span class="gradient-text">Furkan</span>
+          </h1>
+          <p class="text-xl text-gray-300 mb-6">
+            Software Developer & Front-end Developer
+          </p>
+          <p class="text-gray-400 mb-8">
+            Modern ve kullanıcı dostu web uygulamaları geliştiren tutkulu
+            bir yazılım geliştiriciyim. Yenilikçi teknolojileri kullanarak
+            işlevsel ve etkileyici dijital deneyimler yaratıyorum.
+          </p>
+          <div class="flex space-x-4">
+            <a
+              href="#contact"
+              class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white font-medium hover:opacity-90 transition-opacity"
+              >İletişime Geç</a
+            >
+            <a
+              href="#projects"
+              class="px-6 py-3 bg-zinc-800 rounded-lg text-white font-medium hover:bg-zinc-700 transition-colors"
+              >Projelerimi Gör</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 bg-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-12 text-center gradient-text">
+        Hakkımda
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div
+          class="bg-black p-8 rounded-xl border border-zinc-800 custom-shadow"
+        >
+          <h3 class="text-2xl font-semibold mb-4">Kişisel Bilgiler</h3>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <div
+                class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-user text-blue-400"></i>
               </div>
-              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 85%"></div>
+              <div>
+                <p class="text-gray-400 text-sm">İsim</p>
+                <p class="text-white">Furkan</p>
               </div>
             </div>
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="font-medium">CSS</span>
-                <span class="text-gray-600 dark:text-gray-400">80%</span>
+            <div class="flex items-center">
+              <div
+                class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-envelope text-blue-400"></i>
               </div>
-              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 80%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="font-medium">JavaScript</span>
-                <span class="text-gray-600 dark:text-gray-400">75%</span>
-              </div>
-              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 75%"></div>
+              <div>
+                <p class="text-gray-400 text-sm">Email</p>
+                <p class="text-white">furkan21@gmail.com</p>
               </div>
             </div>
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="font-medium">React</span>
-                <span class="text-gray-600 dark:text-gray-400">70%</span>
+            <div class="flex items-center">
+              <div
+                class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4"
+              >
+                <i class="fas fa-map-marker-alt text-blue-400"></i>
               </div>
-              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 70%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="font-medium">Tailwind CSS</span>
-                <span class="text-gray-600 dark:text-gray-400">65%</span>
-              </div>
-              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 65%"></div>
+              <div>
+                <p class="text-gray-400 text-sm">Konum</p>
+                <p class="text-white">İstanbul, Türkiye</p>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Backend -->
-        <div>
-          <h3 class="text-xl font-bold mb-6 flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
-            </svg>
-            Backend Teknolojileri
-          </h3>
-          <div class="space-y-6">
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="font-medium">Node.js</span>
-                <span class="text-gray-600 dark:text-gray-400">60%</span>
-              </div>
-              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 60%"></div>
-              </div>
+  <!-- Projects Section -->
+  <section id="projects" class="py-16 bg-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-12 text-center gradient-text">
+        Projelerim
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <!-- Project 1 -->
+        <div
+          class="project-card bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden"
+        >
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">
+              Görev Yönetim Uygulaması
+            </h3>
+            <p class="text-gray-400 mb-4">
+              Sürükle-bırak arayüzlü görev yönetim sistemi.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300"
+                >Vue.js</span
+              >
+              <span
+                class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300"
+                >Firebase</span
+              >
+              <span
+                class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300"
+                >Tailwind CSS</span
+              >
             </div>
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="font-medium">Express</span>
-                <span class="text-gray-600 dark:text-gray-400">55%</span>
-              </div>
-              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 55%"></div>
-              </div>
+            <div class="flex justify-between">
+              <a
+                href="#"
+                class="text-blue-400 hover:text-blue-300 flex items-center"
+                >Demo<i class="fas fa-external-link-alt ml-1"></i
+              ></a>
+              <a
+                href="#"
+                class="text-purple-400 hover:text-purple-300 flex items-center"
+                >GitHub<i class="fab fa-github ml-1"></i
+              ></a>
             </div>
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="font-medium">MongoDB</span>
-                <span class="text-gray-600 dark:text-gray-400">50%</span>
-              </div>
-              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 50%"></div>
-              </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div
+          class="project-card bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden"
+        >
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Hava Durumu Dashboard</h3>
+            <p class="text-gray-400 mb-4">
+              API ile çalışan etkileşimli hava durumu arayüzü.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span
+                class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300"
+                >JavaScript</span
+              >
+              <span
+                class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300"
+                >OpenWeather API</span
+              >
+              <span
+                class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300"
+                >Chart.js</span
+              >
             </div>
-            <div>
-              <div class="flex justify-between mb-2">
-                <span class="font-medium">SQL</span>
-                <span class="text-gray-600 dark:text-gray-400">45%</span>
-              </div>
-              <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 45%"></div>
-              </div>
+            <div class="flex justify-between">
+              <a
+                href="#"
+                class="text-blue-400 hover:text-blue-300 flex items-center"
+                >Demo<i class="fas fa-external-link-alt ml-1"></i
+              ></a>
+              <a
+                href="#"
+                class="text-purple-400 hover:text-purple-300 flex items-center"
+                >GitHub<i class="fab fa-github ml-1"></i
+              ></a>
             </div>
-            <div>
-              <div class="flex justify-between mb-2
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-16 bg-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-12 text-center gradient-text">
+        Yeteneklerim
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          class="bg-black p-8 rounded-xl border border-zinc-800 custom-shadow"
+        >
+          <div class="flex items-center mb-6">
+            <div
+              class="w-12 h-12 bg-blue-900/20 rounded-lg flex items-center justify-center mr-4"
+            >
+              <i class="fas fa-code text-blue-400 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold">Frontend</h3>
+          </div>
+          <ul class="list-disc list-inside text-gray-300">
+            <li>HTML, CSS, JavaScript</li>
+            <li>React, Vue</li>
+            <li>Tailwind CSS, Bootstrap</li>
+          </ul>
+        </div>
+        <!-- Backend and Other Skills Cards buraya eklenebilir -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section (Formlu ve iletişim bilgileriyle) -->
+  <section id="contact" class="py-16 bg-black">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-8 gradient-text">İletişime Geç</h2>
+      <p class="text-gray-400 mb-6">
+        Benimle projeler, iş teklifleri ya da merak ettiğiniz konular için
+        iletişime geçebilirsiniz.
+      </p>
+
+      <form
+        class="mb-12 space-y-6 text-left"
+        onsubmit="event.preventDefault(); alert('Mesajınız gönderildi!'); this.reset();"
+      >
+        <label class="block">
+          <span class="text-gray-300">İsim</span>
+          <input
