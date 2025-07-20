@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="tr" class="dark">
+<!DOCTYPE html><html lang="tr" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Furkan - Portfolyo</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -49,33 +45,13 @@
       background-color: #1a1a1a;
       border: 1px solid #333;
     }
-    /* Tema butonu */
-    #theme-toggle {
+    .theme-toggle {
       cursor: pointer;
-      font-size: 1.25rem;
-      color: #3b82f6;
-      transition: color 0.3s;
-    }
-    #theme-toggle:hover {
-      color: #8b5cf6;
     }
   </style>
 </head>
 <body class="bg-black text-white">
   <script>
-    // Tema seçimini localStorage'dan al ve uygula
-    const userPref = localStorage.getItem('theme');
-    const htmlEl = document.documentElement;
-    if (userPref === 'light') {
-      htmlEl.classList.remove('dark');
-      document.body.classList.remove('bg-black', 'text-white');
-      document.body.classList.add('bg-white', 'text-black');
-    } else {
-      htmlEl.classList.add('dark');
-      document.body.classList.add('bg-black', 'text-white');
-    }
-
-    // Tarih ve saat güncelle
     function updateClock() {
       const now = new Date();
       const date = now.toLocaleDateString('tr-TR');
@@ -83,342 +59,45 @@
       document.getElementById('datetime').textContent = `${date} ${time}`;
     }
     setInterval(updateClock, 1000);
-    updateClock();
-
-    // Tema değiştirme butonu işlevi
-    function toggleTheme() {
-      if (htmlEl.classList.contains('dark')) {
-        htmlEl.classList.remove('dark');
-        document.body.classList.remove('bg-black', 'text-white');
-        document.body.classList.add('bg-white', 'text-black');
-        localStorage.setItem('theme', 'light');
-        document.getElementById('theme-toggle').textContent = '🌞';
-      } else {
-        htmlEl.classList.add('dark');
-        document.body.classList.remove('bg-white', 'text-black');
-        document.body.classList.add('bg-black', 'text-white');
-        localStorage.setItem('theme', 'dark');
-        document.getElementById('theme-toggle').textContent = '🌙';
-      }
-    }
-
-    // Sayfa yüklendiğinde buton simgesini ayarla
-    window.addEventListener('DOMContentLoaded', () => {
-      const themeToggleBtn = document.getElementById('theme-toggle');
-      if (htmlEl.classList.contains('dark')) {
-        themeToggleBtn.textContent = '🌙';
-      } else {
-        themeToggleBtn.textContent = '🌞';
-      }
-      themeToggleBtn.addEventListener('click', toggleTheme);
-    });
-  </script>
-
-  <!-- Navbar -->
-  <nav class="bg-black border-b border-zinc-800 fixed w-full z-10">
+  </script>  <!-- Navbar -->  <nav class="bg-black border-b border-zinc-800 fixed w-full z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div
-        class="flex justify-between h-16 items-center"
-      >
-        <div class="flex items-center space-x-6">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
           <a href="#" class="text-xl font-bold gradient-text">Furkan</a>
-          <a
-            href="#about"
-            class="nav-link text-gray-300 hover:text-white transition-colors"
-            >Hakkımda</a
-          >
-          <a
-            href="#projects"
-            class="nav-link text-gray-300 hover:text-white transition-colors"
-            >Projeler</a
-          >
-          <a
-            href="#skills"
-            class="nav-link text-gray-300 hover:text-white transition-colors"
-            >Yetenekler</a
-          >
-          <a
-            href="#learned"
-            class="nav-link text-gray-300 hover:text-white transition-colors"
-            >Öğrendiklerim</a
-          >
-          <a
-            href="#contact"
-            class="nav-link text-gray-300 hover:text-white transition-colors"
-            >İletişim</a
-          >
         </div>
-
         <div class="flex items-center space-x-6">
+          <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors">Hakkımda</a>
+          <a href="#projects" class="nav-link text-gray-300 hover:text-white transition-colors">Projeler</a>
+          <a href="#skills" class="nav-link text-gray-300 hover:text-white transition-colors">Yetenekler</a>
+          <a href="#learned" class="nav-link text-gray-300 hover:text-white transition-colors">Öğrendiklerim</a>
+          <a href="#contact" class="nav-link text-gray-300 hover:text-white transition-colors">İletişim</a>
           <span class="text-sm text-gray-400" id="datetime"></span>
-          <button id="theme-toggle" aria-label="Tema Değiştir"></button>
         </div>
       </div>
     </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="pt-24 pb-12 bg-black dark:bg-black">
+  </nav>  <!-- Hero Section -->  <section class="pt-24 pb-12 bg-black">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row items-center justify-between">
         <div class="md:w-1/2 mb-10 md:mb-0">
-          <h1 class="text-4xl md:text-5xl font-bold mb-4">
-            Merhaba, ben <span class="gradient-text">Furkan</span>
-          </h1>
-          <p class="text-xl text-gray-300 mb-6">
-            Web Developer & E-Ticaret Girişimcisi
-          </p>
-          <p class="text-gray-400 mb-8">
-            HTML, CSS, JavaScript öğreniyorum. Web geliştirme yolculuğum devam
-            ediyor. Aynı zamanda e-ticaret ile ilgileniyorum ve dijital dünyada
-            kendi yerimi oluşturuyorum.
-          </p>
+          <h1 class="text-4xl md:text-5xl font-bold mb-4">Merhaba, ben <span class="gradient-text">Furkan</span></h1>
+          <p class="text-xl text-gray-300 mb-6">Web Developer & E-Ticaret Girişimcisi</p>
+          <p class="text-gray-400 mb-8">HTML, CSS, JavaScript öğreniyorum. Web geliştirme yolculuğum devam ediyor. Aynı zamanda e-ticaret ile ilgileniyorum ve dijital dünyada kendi yerimi oluşturuyorum.</p>
           <div class="flex space-x-4">
-            <a
-              href="#contact"
-              class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white font-medium hover:opacity-90 transition-opacity"
-              >İletişime Geç</a
-            >
-            <a
-              href="#projects"
-              class="px-6 py-3 bg-zinc-800 rounded-lg text-white font-medium hover:bg-zinc-700 transition-colors"
-              >Projelerimi Gör</a
-            >
+            <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white font-medium hover:opacity-90 transition-opacity">İletişime Geç</a>
+            <a href="#projects" class="px-6 py-3 bg-zinc-800 rounded-lg text-white font-medium hover:bg-zinc-700 transition-colors">Projelerimi Gör</a>
           </div>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- Öğrendiklerim Bölümü -->
-  <section id="learned" class="py-16 bg-zinc-900 dark:bg-zinc-900">
+  </section>  <!-- Öğrendiklerim Bölümü -->  <section id="learned" class="py-16 bg-zinc-900">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Öğrendiklerim</h2>
       <ul class="list-disc list-inside text-gray-300 space-y-2">
         <li>HTML – Sayfa yapısı, etiketler, form elemanları</li>
         <li>CSS – Tasarım, responsive yapılar, animasyonlar</li>
         <li>JavaScript – Temel syntax, DOM işlemleri, basit projeler</li>
-        <li>
-          E-ticaret bilgisi – Ürün listeleme, müşteri iletişimi, satış
-          stratejileri
-        </li>
+        <li>E-ticaret bilgisi – Ürün listeleme, müşteri iletişimi, satış stratejileri</li>
       </ul>
     </div>
-  </section>
-
-  <!-- About Section -->
-  <section
-    id="about"
-    class="py-16 bg-zinc-900 dark:bg-zinc-900"
-  >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2
-        class="text-3xl font-bold mb-12 text-center gradient-text"
-      >
-        Hakkımda
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div
-          class="bg-black dark:bg-black p-8 rounded-xl border border-zinc-800 custom-shadow"
-        >
-          <h3 class="text-2xl font-semibold mb-4">Kişisel Bilgiler</h3>
-          <div class="space-y-4">
-            <div class="flex items-center">
-              <div
-                class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4"
-              >
-                <i class="fas fa-user text-blue-400"></i>
-              </div>
-              <div>
-                <p class="text-gray-400 text-sm">İsim</p>
-                <p class="text-white">Furkan</p>
-              </div>
-            </div>
-            <div class="flex items-center">
-              <div
-                class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4"
-              >
-                <i class="fas fa-envelope text-blue-400"></i>
-              </div>
-              <div>
-                <p class="text-gray-400 text-sm">Email</p>
-                <p class="text-white">furkan21@gmail.com</p>
-              </div>
-            </div>
-            <div class="flex items-center">
-              <div
-                class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4"
-              >
-                <i class="fas fa-map-marker-alt text-blue-400"></i>
-              </div>
-              <div>
-                <p class="text-gray-400 text-sm">Konum</p>
-                <p class="text-white">İstanbul, Türkiye</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section
-    id="projects"
-    class="py-16 bg-zinc-900 dark:bg-zinc-900"
-  >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2
-        class="text-3xl font-bold mb-12 text-center gradient-text"
-      >
-        Projelerim
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <!-- Project 1 -->
-        <div
-          class="project-card bg-zinc-900 dark:bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden"
-        >
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">
-              Görev Yönetim Uygulaması
-            </h3>
-            <p class="text-gray-400 mb-4">
-              Sürükle-bırak arayüzlü görev yönetim sistemi.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span
-                class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300"
-                >Vue.js</span
-              >
-              <span
-                class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300"
-                >Firebase</span
-              >
-              <span
-                class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300"
-                >Tailwind CSS</span
-              >
-            </div>
-            <div class="flex justify-between">
-              <a
-                href="#"
-                class="text-blue-400 hover:text-blue-300 flex items-center"
-                >Demo
-                <i class="fas fa-external-link-alt ml-1"></i>
-              </a>
-              <a
-                href="#"
-                class="text-purple-400 hover:text-purple-300 flex items-center"
-                >GitHub
-                <i class="fab fa-github ml-1"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 2 -->
-        <div
-          class="project-card bg-zinc-900 dark:bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden"
-        >
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Hava Durumu Dashboard</h3>
-            <p class="text-gray-400 mb-4">
-              API ile çalışan etkileşimli hava durumu arayüzü.
-            </p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span
-                class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300"
-                >JavaScript</span
-              >
-              <span
-                class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300"
-                >OpenWeather API</span
-              >
-              <span
-                class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300"
-                >Chart.js</span
-              >
-            </div>
-            <div class="flex justify-between">
-              <a
-                href="#"
-                class="text-blue-400 hover:text-blue-300 flex items-center"
-                >Demo
-                <i class="fas fa-external-link-alt ml-1"></i>
-              </a>
-              <a
-                href="#"
-                class="text-purple-400 hover:text-purple-300 flex items-center"
-                >GitHub
-                <i class="fab fa-github ml-1"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills Section -->
-  <section
-    id="skills"
-    class="py-16 bg-zinc-900 dark:bg-zinc-900"
-  >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2
-        class="text-3xl font-bold mb-12 text-center gradient-text"
-      >
-        Yeteneklerim
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div
-          class="bg-black dark:bg-black p-8 rounded-xl border border-zinc-800 custom-shadow"
-        >
-          <div class="flex items-center mb-6">
-            <div
-              class="w-12 h-12 bg-blue-900/20 rounded-lg flex items-center justify-center mr-4"
-            >
-              <i class="fas fa-code text-blue-400 text-xl"></i>
-            </div>
-            <h3 class="text-xl font-semibold">Frontend</h3>
-          </div>
-          <ul class="list-disc list-inside text-gray-300">
-            <li>HTML, CSS, JavaScript</li>
-            <li>React, Vue</li>
-            <li>Tailwind CSS, Bootstrap</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-16 bg-black dark:bg-black">
-    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold mb-8 gradient-text">İletişime Geç</h2>
-      <p class="text-gray-400 mb-6">
-        Benimle projeler, iş teklifleri ya da merak ettiğiniz konular için iletişime
-        geçebilirsiniz.
-      </p>
-      <div class="space-y-4 text-left">
-        <div class="flex items-center">
-          <i class="fas fa-envelope text-blue-400 w-8"></i>
-          <span class="text-white ml-2">furkan21@gmail.com</span>
-        </div>
-        <div class="flex items-center">
-          <i class="fas fa-map-marker-alt text-blue-400 w-8"></i>
-          <span class="text-white ml-2">Diyarbakır, Türkiye</span>
-        </div>
-        <div class="flex items-center">
-          <i class="fab fa-linkedin text-blue-400 w-8"></i>
-          <a href="#" class="ml-2 text-white hover:underline">Instagram profilim</a>
-        </div>
-        <div class="flex items-center">
-          <i class="fab fa-github text-purple-400 w-8"></i>
-          <a href="#" class="ml-2 text-white hover:underline">GitHub</a>
-        </div>
-      </div>
-    </div>
-  </section>
-</body>
+  </section>  <!-- Diğer bölümler burada devam eder (Hakkımda, Projeler, Yetenekler, İletişim) --></body>
 </html>
