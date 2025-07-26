@@ -8,21 +8,29 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <style>
-    body { margin:0; background:#0a0a0a; color:#f5f5f5; font-family:'Inter',sans-serif; scroll-behavior:smooth; }
-    .gradient-text { background:linear-gradient(90deg,#4f46e5,#a855f7,#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-    section { padding:100px 20px; }
-    #particles-js { position:absolute; width:100%; height:100%; z-index:-1; }
+    body { margin: 0; background: #0a0a0a; color: #f5f5f5; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+    .gradient-text { background: linear-gradient(90deg, #4f46e5, #a855f7, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    section { padding: 100px 20px; }
+    #particles-js { position: absolute; width: 100%; height: 100%; z-index: -1; }
+    .neon-box { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 0 15px rgba(168, 85, 247, 0.6); border-radius: 12px; }
+    .btn-neon { background: linear-gradient(90deg, #4f46e5, #a855f7); color: white; padding: 10px 20px; border-radius: 8px; transition: transform 0.2s; }
+    .btn-neon:hover { transform: scale(1.05); }
+    .typewriter { display: inline-block; overflow: hidden; white-space: nowrap; border-right: 2px solid #fff; animation: typing 3.5s steps(30) infinite, blink 0.7s infinite; }
+    @keyframes typing { 0% { width: 0; } 50% { width: 100%; } 100% { width: 0; } }
+    @keyframes blink { 50% { border-color: transparent; } }
+    footer { text-align: center; padding: 20px; background: #111; color: #aaa; }
     /* AI Asistan */
-    #ai-toggle { position:fixed; bottom:20px; right:20px; background:linear-gradient(90deg,#4f46e5,#a855f7); color:#fff; padding:10px 20px; border-radius:25px; cursor:pointer; }
-    #ai-box { position:fixed; bottom:80px; right:20px; width:320px; background:#1a1a1a; border-radius:10px; border:1px solid #333; display:none; flex-direction:column; }
-    #ai-header { padding:10px; background:linear-gradient(90deg,#4f46e5,#a855f7); color:#fff; font-weight:bold; display:flex; justify-content:space-between; }
-    #ai-messages { padding:10px; height:250px; overflow-y:auto; font-size:14px; }
-    .user-msg { text-align:right; color:#93c5fd; margin:5px 0; }
-    .ai-msg { text-align:left; color:#a7f3d0; margin:5px 0; }
-    #ai-footer { padding:10px; border-top:1px solid #333; }
-    #ai-input { width:100%; padding:8px; border:none; border-radius:6px; background:#333; color:#fff; }
-    .quick-buttons { display:flex; flex-wrap:wrap; gap:5px; padding:5px 10px; }
-    .quick-buttons button { padding:4px 8px; background:#4f46e5; border:none; border-radius:4px; color:#fff; cursor:pointer; font-size:12px; }
+    #ai-toggle { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(90deg, #4f46e5, #a855f7); color: #fff; padding: 10px 20px; border-radius: 25px; cursor: pointer; }
+    #ai-box { position: fixed; bottom: 80px; right: 20px; width: 340px; background: #1a1a1a; border-radius: 10px; border: 1px solid #333; display: none; flex-direction: column; }
+    #ai-header { padding: 10px; background: linear-gradient(90deg, #4f46e5, #a855f7); color: #fff; font-weight: bold; display: flex; justify-content: space-between; }
+    #ai-messages { padding: 10px; height: 260px; overflow-y: auto; font-size: 14px; }
+    .user-msg { text-align: right; color: #93c5fd; margin: 5px 0; }
+    .ai-msg { text-align: left; color: #a7f3d0; margin: 5px 0; }
+    .typing { font-style: italic; color: #999; }
+    #ai-footer { padding: 10px; border-top: 1px solid #333; }
+    #ai-input { width: 100%; padding: 8px; border: none; border-radius: 6px; background: #333; color: #fff; }
+    .quick-buttons { display: flex; flex-wrap: wrap; gap: 5px; padding: 5px 10px; }
+    .quick-buttons button { padding: 4px 8px; background: #4f46e5; border: none; border-radius: 4px; color: #fff; cursor: pointer; font-size: 12px; }
   </style>
 </head>
 <body>
@@ -31,13 +39,11 @@
   <section class="text-center min-h-screen flex flex-col justify-center items-center relative">
     <div id="particles-js"></div>
     <h1 class="text-6xl font-extrabold mb-4 gradient-text">Merhaba, ben Furkan</h1>
-    <p class="text-xl mb-6">Web Developer • Sosyal Medya Uzmanı • E-Ticaret Girişimcisi</p>
-    <p class="text-gray-400 mb-8">Hayallerini kodla, geleceğini inşa et.</p>
+    <p class="text-xl mb-6 typewriter">Web Developer • Sosyal Medya Uzmanı • E-Ticaret Girişimcisi</p>
     <div class="flex justify-center gap-4 text-2xl">
       <a href="https://www.instagram.com/muhammed_furkann1" target="_blank" class="text-pink-400"><i class="fab fa-instagram"></i></a>
       <a href="mailto:furkan21@gmail.com" class="text-blue-400"><i class="fas fa-envelope"></i></a>
     </div>
-    <div class="mt-10 text-gray-400 animate-bounce"><i class="fas fa-chevron-down text-3xl"></i></div>
   </section>
 
   <!-- HAKKIMDA -->
@@ -55,10 +61,10 @@
   <section id="skills" class="bg-black text-center">
     <h2 class="text-4xl font-bold mb-8 gradient-text">Yeteneklerim</h2>
     <div class="max-w-5xl mx-auto grid sm:grid-cols-2 gap-6">
-      <div class="p-6 bg-zinc-800 rounded-lg"><i class="fab fa-html5 text-4xl text-orange-400"></i><h3 class="mt-2 text-xl font-semibold">HTML</h3></div>
-      <div class="p-6 bg-zinc-800 rounded-lg"><i class="fab fa-css3-alt text-4xl text-blue-400"></i><h3 class="mt-2 text-xl font-semibold">CSS</h3></div>
-      <div class="p-6 bg-zinc-800 rounded-lg"><i class="fab fa-instagram text-4xl text-pink-400"></i><h3 class="mt-2 text-xl font-semibold">Sosyal Medya</h3></div>
-      <div class="p-6 bg-zinc-800 rounded-lg"><i class="fas fa-store text-4xl text-green-400"></i><h3 class="mt-2 text-xl font-semibold">E-Ticaret</h3></div>
+      <div class="p-6 neon-box"><i class="fab fa-html5 text-4xl text-orange-400"></i><h3 class="mt-2 text-xl font-semibold">HTML</h3></div>
+      <div class="p-6 neon-box"><i class="fab fa-css3-alt text-4xl text-blue-400"></i><h3 class="mt-2 text-xl font-semibold">CSS</h3></div>
+      <div class="p-6 neon-box"><i class="fab fa-instagram text-4xl text-pink-400"></i><h3 class="mt-2 text-xl font-semibold">Sosyal Medya</h3></div>
+      <div class="p-6 neon-box"><i class="fas fa-store text-4xl text-green-400"></i><h3 class="mt-2 text-xl font-semibold">E-Ticaret</h3></div>
     </div>
   </section>
 
@@ -73,7 +79,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black border-t border-zinc-800 py-6 text-center text-gray-400 text-sm">
+  <footer>
     © 2025 Furkan. Tüm hakları saklıdır.
   </footer>
 
@@ -94,19 +100,16 @@
 
   <script>
     // Particles
-    particlesJS('particles-js', {
-      particles: { number:{value:70}, size:{value:3}, move:{speed:1}, line_linked:{enable:true}, color:{value:"#ffffff"} }
-    });
+    particlesJS('particles-js', {particles: {number:{value:70},size:{value:3},move:{speed:1},line_linked:{enable:true},color:{value:"#ffffff"}}});
 
     // AI Verileri
     const greetings = ["Merhaba! Hoş geldin 😊","Selam, nasılsın?","İyi ki buradasın.","Harika görünüyorsun!","Hey! Naber?"];
-    const jokes = ["Bilgisayar denize neden girmiş? Çok cache’i varmış!","Programcı neden gözlük takar? Çünkü C# göremez!","Veritabanı neden ağlamış? İlişkisi bozulmuş."];
+    const jokes = ["Bilgisayar neden denize girmiş? Çok cache’i varmış!","Programcı neden gözlük takar? Çünkü C# göremez!","Veritabanı neden ağlamış? İlişkisi bozulmuş."];
     const facts = ["Bal asla bozulmaz.","İlk web sitesi 1991'de açıldı.","Dünya 24 saatte döner.","Güneşin içine 1.3 milyon dünya sığar."];
     const motivations = ["Pes etme, başarı yakında.","Kendine inan, her şey mümkün.","Bugün harika bir gün olacak.","Hayallerine odaklan!"];
     const suggestions = ["Inception filmini izleyebilirsin.","Spotify'da 'Chill Hits' listesine bak.","Kitap önerisi: Sapiens.","Film önerisi: Matrix."];
     const days = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
 
-    // 300 Cevap için rastgele tekrarlarla doldur (temel örnek)
     while(greetings.length < 50) greetings.push("Selam! Nasılsın?");
     while(jokes.length < 80) jokes.push("Klavye neden mutluymuş? Çünkü tuşları var!");
     while(facts.length < 70) facts.push("Kediler 100 farklı ses çıkarabilir.");
@@ -144,11 +147,13 @@
       const userText = input.value.trim();
       if (!userText) return;
       messages.innerHTML += `<div class="user-msg"><strong>Sen:</strong> ${userText}</div>`;
+      messages.innerHTML += `<div class="ai-msg typing">Yazıyor...</div>`;
       setTimeout(() => {
+        document.querySelector('.typing').remove();
         const reply = getAIResponse(userText);
         messages.innerHTML += `<div class="ai-msg"><strong>AI:</strong> ${reply}</div>`;
         messages.scrollTop = messages.scrollHeight;
-      }, 400);
+      }, 600);
       input.value = "";
     }
   </script>
