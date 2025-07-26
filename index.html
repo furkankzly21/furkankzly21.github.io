@@ -39,12 +39,12 @@
       top: -10%;
       left: -10%;
       background: conic-gradient(from 180deg at 50% 50%, #4f46e5, #a855f7, #06b6d4, #4f46e5);
-      animation: spin 20s linear infinite;
+      animation: spin 25s linear infinite;
       opacity: 0.2;
       z-index: 0;
     }
     .hero-bg::after {
-      animation-duration: 35s;
+      animation-duration: 40s;
       opacity: 0.1;
     }
     @keyframes spin {
@@ -227,16 +227,20 @@
     aiBtn.addEventListener('click', () => chatBox.classList.toggle('hidden'));
     closeChat.addEventListener('click', () => chatBox.classList.add('hidden'));
 
-    // 100+ cevap
+    // 50+ cevap
     const aiAnswers = {
       "merhaba": "Merhaba! Hoş geldin 😊",
       "selam": "Selam! Nasılsın?",
       "naber": "İyiyim, ya sen?",
       "nasılsın": "İyiyim, sen nasılsın?",
       "bende iyiyim": "Harika! Sevindim 😊",
+      "adın ne": "Ben Furkan'ın AI Asistanıyım, bana FurkanBot diyebilirsin.",
+      "sen kimsin": "Ben Furkan için hazırlanmış kişisel bir AI Asistanım.",
+      "kaç yaşındasın": "Ben bir yapay zekâ olduğum için yaşım yok.",
+      "ne yapıyorsun": "Sana yardımcı olmak için buradayım!",
       "teşekkürler": "Rica ederim!",
       "seni kim yaptı": "Beni Furkan geliştirdi. Onun kişisel asistanıyım.",
-      "furkan kimdir": "Furkan, web developer ve girişimcidir.",
+      "furkan kimdir": "Furkan, web developer, e-ticaret girişimcisi ve sosyal medya uzmanıdır.",
       "motivasyon": "Başarı sabırla gelir, vazgeçme!",
       "şaka yap": "Bilgisayar neden denize girmiş? Çok fazla cache'i varmış! 😂",
       "hava durumu": "Şu an hava tahminine bakamıyorum ama umarım güneşlidir ☀️",
