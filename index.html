@@ -8,37 +8,73 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
   <style>
-    body { background: #0a0a0a; color: #f5f5f5; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-    .gradient-text { background: linear-gradient(90deg, #4f46e5, #a855f7, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .neon-text { color: #fff; text-shadow: 0 0 5px #a855f7, 0 0 10px #4f46e5, 0 0 20px #06b6d4; animation: glow 2s ease-in-out infinite alternate; }
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #a855f7, 0 0 20px #4f46e5; }
-      to { text-shadow: 0 0 20px #06b6d4, 0 0 40px #4f46e5; }
+    body {
+      background: #0a0a0a;
+      color: #f5f5f5;
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
     }
-    .btn-gradient { background: linear-gradient(90deg, #4f46e5, #a855f7); transition: 0.3s; }
-    .btn-gradient:hover { transform: scale(1.05); opacity: 0.9; }
-    .skill-bar { height: 8px; background: linear-gradient(90deg, #4f46e5, #a855f7); border-radius: 4px; animation: fillBar 1.5s forwards; }
-    @keyframes fillBar { from { width: 0; } to { width: 100%; } }
-    .hero-bg { position: relative; height: 100vh; overflow: hidden; }
-    #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; }
-    .hero-content { position: relative; z-index: 1; }
-    .scroll-down { animation: bounce 2s infinite; }
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(5px); }
-      60% { transform: translateY(3px); }
+    .gradient-text {
+      background: linear-gradient(90deg, #4f46e5, #a855f7, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .portfolio-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.75rem; transition: transform 0.3s, box-shadow 0.3s; }
-    .portfolio-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); }
-
+    .hero-bg {
+      background: linear-gradient(270deg, #4f46e5, #a855f7, #06b6d4);
+      background-size: 600% 600%;
+      animation: gradientMove 15s ease infinite;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    @keyframes gradientMove {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    .neon-text {
+      text-shadow: 0 0 5px #a855f7, 0 0 10px #4f46e5, 0 0 20px #06b6d4;
+    }
+    .btn-gradient {
+      background: linear-gradient(90deg, #4f46e5, #a855f7);
+      transition: 0.3s;
+    }
+    .btn-gradient:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+    .portfolio-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.75rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    /* AI Buton */
+    #ai-btn {
+      background: linear-gradient(to right, #9333ea, #3b82f6);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 5px #9333ea, 0 0 15px #3b82f6; }
+      50% { box-shadow: 0 0 15px #9333ea, 0 0 30px #3b82f6; }
+      100% { box-shadow: 0 0 5px #9333ea, 0 0 15px #3b82f6; }
+    }
     /* Chatbot */
     #chat-box { max-height: 350px; }
+    /* Navbar Scroll */
+    .scrolled { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(6px); }
   </style>
 </head>
 <body>
 
   <!-- Navbar -->
-  <nav class="fixed w-full bg-black/70 backdrop-blur border-b border-zinc-800 z-20">
+  <nav id="navbar" class="fixed w-full z-20 transition duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
       <a href="#" class="text-xl font-bold gradient-text">Furkan</a>
       <div class="hidden md:flex space-x-8">
@@ -51,20 +87,16 @@
   </nav>
 
   <!-- Hero -->
-  <section class="hero-bg flex flex-col items-center justify-center text-center">
-    <div id="particles-js"></div>
-    <div class="hero-content max-w-4xl px-4" data-aos="fade-up">
+  <section class="hero-bg">
+    <div data-aos="zoom-in">
       <h1 class="text-5xl md:text-6xl font-extrabold mb-6 neon-text">Merhaba, ben <span class="gradient-text">Furkan</span></h1>
-      <p class="text-2xl md:text-3xl mb-8">Web Developer • Sosyal Medya Uzmanı • E-Ticaret Girişimcisi • Yapay Zekâ Öğrencisi</p>
+      <p class="text-xl md:text-2xl mb-8">Web Developer • Sosyal Medya Uzmanı • E-Ticaret Girişimcisi</p>
       <div class="flex justify-center space-x-6 text-2xl mb-8">
         <a href="https://www.instagram.com/muhammed_furkann1" target="_blank" class="text-pink-400 hover:scale-110 transition"><i class="fab fa-instagram"></i></a>
         <a href="mailto:furkan21@gmail.com" class="text-blue-400 hover:scale-110 transition"><i class="fas fa-envelope"></i></a>
         <a href="https://github.com/" target="_blank" class="text-gray-300 hover:scale-110 transition"><i class="fab fa-github"></i></a>
       </div>
       <a href="#contact" class="btn-gradient px-10 py-4 rounded-lg text-lg text-white font-semibold shadow-lg">İletişime Geç</a>
-      <div class="mt-12 text-gray-400 scroll-down">
-        <i class="fas fa-chevron-down text-2xl"></i>
-      </div>
     </div>
   </section>
 
@@ -77,7 +109,7 @@
         <strong>HTML ve CSS</strong> konularında kendini geliştirmiş,
         <strong>sosyal medya yönetimi</strong> ve
         <strong>e-ticaret girişimciliği</strong> alanlarında uzmanlaşmıştır.
-        Aynı zamanda yapay zekâ (AI) teknolojilerine ilgi duymakta ve bu alanda kendini geliştirmektedir.
+        Aynı zamanda yapay zekâ teknolojilerine ilgi duymaktadır.
       </p>
     </div>
   </section>
@@ -115,7 +147,6 @@
         <div><p class="mb-2"><i class="fab fa-css3-alt text-blue-400"></i> CSS</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 85%;"></div></div></div>
         <div><p class="mb-2"><i class="fab fa-instagram text-pink-400"></i> Sosyal Medya Uzmanlığı</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 80%;"></div></div></div>
         <div><p class="mb-2"><i class="fas fa-store text-green-400"></i> E-Ticaret Girişimciliği</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 75%;"></div></div></div>
-        <div><p class="mb-2"><i class="fas fa-brain text-purple-400"></i> Yapay Zekâ (AI)</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 40%;"></div></div></div>
       </div>
     </div>
   </section>
@@ -137,7 +168,7 @@
   </footer>
 
   <!-- AI Asistan Butonu -->
-  <button id="ai-btn" class="fixed bottom-6 right-6 bg-gradient-to-r from-purple-500 to-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition">
+  <button id="ai-btn" class="fixed bottom-6 right-6 text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition">
     <i class="fas fa-robot"></i> AI Asistan
   </button>
 
@@ -151,15 +182,26 @@
     <input id="chat-input" type="text" placeholder="Sorunu yaz..." class="w-full p-2 rounded bg-gray-800 text-white text-sm">
   </div>
 
-  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
     AOS.init({ duration: 1000, once: true });
 
-    particlesJS('particles-js', {
-      particles: { number: { value: 60 }, size: { value: 3 }, move: { speed: 1 }, line_linked: { enable: true }, color: { value: "#ffffff" } }
+    // Navbar scroll efekti
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 10) navbar.classList.add("scrolled");
+      else navbar.classList.remove("scrolled");
     });
+
+    // AI Chat
+    const aiBtn = document.getElementById('ai-btn');
+    const chatBox = document.getElementById('chat-box');
+    const closeChat = document.getElementById('close-chat');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+
+    aiBtn.addEventListener('click', () => chatBox.classList.toggle('hidden'));
+    closeChat.addEventListener('click', () => chatBox.classList.add('hidden'));
 
     const motivasyonlar = [
       "Her gün bir adım daha ileri!",
@@ -171,45 +213,11 @@
 
     const aiAnswers = {
       "merhaba": "Merhaba! Hoş geldin 😊",
-      "selam": "Selam! Nasılsın?",
-      "günaydın": "Günaydın! Harika bir gün dilerim ☀️",
-      "iyi akşamlar": "İyi akşamlar! Umarım günün güzel geçmiştir.",
-      "iyi geceler": "İyi geceler! Tatlı rüyalar ✨",
-      "naber": "İyiyim, sen nasılsın?",
-      "nasılsın": "Harika gidiyorum, sen?",
-      "iyi misin": "Çok iyiyim, teşekkürler!",
-      "ne yapıyorsun": "Seninle sohbet ediyorum 😎",
-      "ne var ne yok": "Her şey yolunda, senin tarafta durumlar nasıl?",
-      "teşekkürler": "Rica ederim, ne demek 🙏",
-      "sağ ol": "Rica ederim, önemli değil.",
-      "rica ederim": "Her zaman buradayım!",
-      "görüşürüz": "Görüşürüz, kendine iyi bak!",
-      "bay bay": "Bay bay 👋",
-      "hoşça kal": "Hoşça kal, sağlıcakla kal!",
-      "iyi günler": "İyi günler dilerim!",
-      "adın ne": "Ben Furkan'ın kişisel AI Asistanıyım.",
-      "yaşın kaç": "Ben dijitalim, yaşım yok 😅",
-      "seni kim yaptı": "Beni Furkan geliştirdi. Onun kişisel asistanıyım.",
-      "kimin asistanısın": "Ben Furkan'ın asistanıyım.",
-      "ne iş yaparsın": "Web, e-ticaret ve sosyal medya konularında yardımcı olurum.",
-      "hobilerin neler": "İnsanlara yardım etmek ve kodlarla oynamak!",
-      "sevdiğin renk": "Mor ve mavi tonlarını çok severim.",
+      "nasılsın": "İyiyim, sen nasılsın?",
       "motivasyon": () => motivasyonlar[Math.floor(Math.random() * motivasyonlar.length)],
-      "şaka yap": "Bilgisayar neden denize girmiş? Çünkü çok fazla cache'lenmiş! 😂",
-      "bugün günlerden ne": () => `Bugün ${new Date().toLocaleDateString('tr-TR', { weekday: 'long' })}.`,
-      "hava durumu": "Şu anda hava durumuna bakamıyorum ama umarım güneşlidir ☀️",
-      "muhammed furkan kimdir": "Furkan, web developer, e-ticaret girişimcisi ve sosyal medya uzmanıdır. HTML ve CSS biliyor, yapay zekâ öğreniyor.",
-      "furkan kimdir": "Furkan, yazılım öğrenimiyle başlayan genç bir girişimci ve web developer’dır."
+      "seni kim yaptı": "Beni Furkan geliştirdi. Onun kişisel asistanıyım.",
+      "bugün günlerden ne": () => `Bugün ${new Date().toLocaleDateString('tr-TR', { weekday: 'long' })}.`
     };
-
-    const aiBtn = document.getElementById('ai-btn');
-    const chatBox = document.getElementById('chat-box');
-    const closeChat = document.getElementById('close-chat');
-    const chatMessages = document.getElementById('chat-messages');
-    const chatInput = document.getElementById('chat-input');
-
-    aiBtn.addEventListener('click', () => chatBox.classList.toggle('hidden'));
-    closeChat.addEventListener('click', () => chatBox.classList.add('hidden'));
 
     chatInput.addEventListener('keypress', function(e) {
       if (e.key === 'Enter' && this.value.trim() !== '') {
@@ -227,4 +235,11 @@
         }
 
         setTimeout(() => {
-          chatMessages.innerHTML += `<div class="text-green-400"><strong
+          chatMessages.innerHTML += `<div class="text-green-400"><strong>AI:</strong> ${response}</div>`;
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 400);
+      }
+    });
+  </script>
+</body>
+</html>
