@@ -30,6 +30,9 @@
     }
     .portfolio-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.75rem; transition: transform 0.3s, box-shadow 0.3s; }
     .portfolio-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); }
+
+    /* Chatbot */
+    #chat-box { max-height: 350px; }
   </style>
 </head>
 <body>
@@ -41,7 +44,6 @@
       <div class="hidden md:flex space-x-8">
         <a href="#about" class="hover:text-blue-400">Hakkımda</a>
         <a href="#services" class="hover:text-blue-400">Hizmetler</a>
-        <a href="#portfolio" class="hover:text-blue-400">Portföy</a>
         <a href="#skills" class="hover:text-blue-400">Yetenekler</a>
         <a href="#contact" class="hover:text-blue-400">İletişim</a>
       </div>
@@ -53,7 +55,7 @@
     <div id="particles-js"></div>
     <div class="hero-content max-w-4xl px-4" data-aos="fade-up">
       <h1 class="text-5xl md:text-6xl font-extrabold mb-6 neon-text">Merhaba, ben <span class="gradient-text">Furkan</span></h1>
-      <p class="text-2xl md:text-3xl mb-8">Web Developer • Sosyal Medya Uzmanı • E-Ticaret Girişimcisi</p>
+      <p class="text-2xl md:text-3xl mb-8">Web Developer • Sosyal Medya Uzmanı • E-Ticaret Girişimcisi • Yapay Zekâ Öğrencisi</p>
       <div class="flex justify-center space-x-6 text-2xl mb-8">
         <a href="https://www.instagram.com/muhammed_furkann1" target="_blank" class="text-pink-400 hover:scale-110 transition"><i class="fab fa-instagram"></i></a>
         <a href="mailto:furkan21@gmail.com" class="text-blue-400 hover:scale-110 transition"><i class="fas fa-envelope"></i></a>
@@ -75,7 +77,7 @@
         <strong>HTML ve CSS</strong> konularında kendini geliştirmiş,
         <strong>sosyal medya yönetimi</strong> ve
         <strong>e-ticaret girişimciliği</strong> alanlarında uzmanlaşmıştır.
-        Dijital pazarlama ve modern web tasarımıyla ilgilenir.
+        Aynı zamanda yapay zekâ (AI) teknolojilerine ilgi duymakta ve bu alanda kendini geliştirmektedir.
       </p>
     </div>
   </section>
@@ -113,6 +115,7 @@
         <div><p class="mb-2"><i class="fab fa-css3-alt text-blue-400"></i> CSS</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 85%;"></div></div></div>
         <div><p class="mb-2"><i class="fab fa-instagram text-pink-400"></i> Sosyal Medya Uzmanlığı</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 80%;"></div></div></div>
         <div><p class="mb-2"><i class="fas fa-store text-green-400"></i> E-Ticaret Girişimciliği</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 75%;"></div></div></div>
+        <div><p class="mb-2"><i class="fas fa-brain text-purple-400"></i> Yapay Zekâ (AI)</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 40%;"></div></div></div>
       </div>
     </div>
   </section>
@@ -133,6 +136,21 @@
     © 2025 Furkan. Tüm hakları saklıdır.
   </footer>
 
+  <!-- AI Asistan Butonu -->
+  <button id="ai-btn" class="fixed bottom-6 right-6 bg-gradient-to-r from-purple-500 to-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition">
+    <i class="fas fa-robot"></i> AI Asistan
+  </button>
+
+  <!-- Chat Penceresi -->
+  <div id="chat-box" class="hidden fixed bottom-20 right-6 w-72 bg-black border border-gray-700 rounded-lg shadow-lg p-4">
+    <div class="flex justify-between items-center mb-2">
+      <h3 class="text-white font-bold text-lg"><i class="fas fa-robot"></i> Asistan</h3>
+      <button id="close-chat" class="text-gray-400 hover:text-red-500"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="chat-messages" class="h-40 overflow-y-auto text-sm text-gray-200 mb-2 p-2 bg-gray-900 rounded"></div>
+    <input id="chat-input" type="text" placeholder="Sorunu yaz..." class="w-full p-2 rounded bg-gray-800 text-white text-sm">
+  </div>
+
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -147,6 +165,51 @@
         move: { speed: 1 },
         line_linked: { enable: true },
         color: { value: "#ffffff" }
+      }
+    });
+
+    // AI Bilgi veritabanı
+    const aiAnswers = {
+      "muhammed furkan kimdir": "Furkan, web developer, e-ticaret girişimcisi ve sosyal medya uzmanıdır. HTML ve CSS biliyor, yapay zekâ öğreniyor.",
+      "furkan kimdir": "Furkan, yazılım öğrenimiyle başlayan genç bir girişimci ve web developer’dır.",
+      "ne iş yapıyorsun": "Web geliştirme, sosyal medya yönetimi ve e-ticaret üzerine çalışıyorum.",
+      "yeteneklerin neler": "HTML, CSS, Sosyal Medya Yönetimi, E-Ticaret ve Yapay Zekâ öğrenimi.",
+      "ai nedir": "AI (Yapay Zekâ), bilgisayarların insan benzeri zeka ve öğrenme kabiliyetleri sergilemesini sağlayan teknolojidir.",
+      "hedeflerin neler": "Yapay zekâ ve web teknolojilerini birleştirerek akıllı projeler geliştirmek, kendi markamı büyütmek.",
+      "projelerin neler": "Web portföy siteleri, e-ticaret platformları ve sosyal medya analiz projeleri yaptım.",
+      "hangi şehirde yaşıyorsun": "Şu anda Diyarbakır, Türkiye'de yaşıyorum.",
+      "seninle nasıl iletişim kurabilirim": "Bana e-posta (furkan21@gmail.com) veya Instagram (@muhammed_furkann1) üzerinden ulaşabilirsin."
+    };
+
+    // AI Chat
+    const aiBtn = document.getElementById('ai-btn');
+    const chatBox = document.getElementById('chat-box');
+    const closeChat = document.getElementById('close-chat');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+
+    aiBtn.addEventListener('click', () => chatBox.classList.toggle('hidden'));
+    closeChat.addEventListener('click', () => chatBox.classList.add('hidden'));
+
+    chatInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' && this.value.trim() !== '') {
+        const userMessage = this.value.trim();
+        chatMessages.innerHTML += `<div class="text-blue-400"><strong>Sen:</strong> ${userMessage}</div>`;
+        this.value = '';
+
+        let lowerMsg = userMessage.toLowerCase();
+        let response = "Bununla ilgili bilgim yok.";
+        for (const key in aiAnswers) {
+          if (lowerMsg.includes(key)) {
+            response = aiAnswers[key];
+            break;
+          }
+        }
+
+        setTimeout(() => {
+          chatMessages.innerHTML += `<div class="text-green-400"><strong>AI:</strong> ${response}</div>`;
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 500);
       }
     });
   </script>
