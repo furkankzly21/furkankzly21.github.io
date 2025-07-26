@@ -12,7 +12,8 @@
     .gradient-text { background: linear-gradient(90deg, #4f46e5, #a855f7, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     section { padding: 100px 20px; }
     #particles-js { position: absolute; width: 100%; height: 100%; z-index: -1; }
-    .neon-box { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 0 15px rgba(168, 85, 247, 0.6); border-radius: 12px; }
+    .neon-box { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 0 15px rgba(168, 85, 247, 0.6); border-radius: 12px; transition: transform 0.3s, box-shadow 0.3s; }
+    .neon-box:hover { transform: translateY(-6px) scale(1.05); box-shadow: 0 0 25px rgba(168, 85, 247, 0.9); }
     .btn-neon { background: linear-gradient(90deg, #4f46e5, #a855f7); color: white; padding: 10px 20px; border-radius: 8px; transition: transform 0.2s; }
     .btn-neon:hover { transform: scale(1.05); }
     .typewriter { display: inline-block; overflow: hidden; white-space: nowrap; border-right: 2px solid #fff; animation: typing 3.5s steps(30) infinite, blink 0.7s infinite; }
@@ -100,34 +101,32 @@
 
   <script>
     // Particles
-    particlesJS('particles-js', {particles: {number:{value:70},size:{value:3},move:{speed:1},line_linked:{enable:true},color:{value:"#ffffff"}}});
+    particlesJS('particles-js', {
+      particles: { number:{value:70}, size:{value:3}, move:{speed:1}, line_linked:{enable:true}, color:{value:"#ffffff"} }
+    });
 
-    // AI Verileri
-    const greetings = ["Merhaba! Hoş geldin 😊","Selam, nasılsın?","İyi ki buradasın.","Harika görünüyorsun!","Hey! Naber?"];
-    const jokes = ["Bilgisayar neden denize girmiş? Çok cache’i varmış!","Programcı neden gözlük takar? Çünkü C# göremez!","Veritabanı neden ağlamış? İlişkisi bozulmuş."];
-    const facts = ["Bal asla bozulmaz.","İlk web sitesi 1991'de açıldı.","Dünya 24 saatte döner.","Güneşin içine 1.3 milyon dünya sığar."];
-    const motivations = ["Pes etme, başarı yakında.","Kendine inan, her şey mümkün.","Bugün harika bir gün olacak.","Hayallerine odaklan!"];
-    const suggestions = ["Inception filmini izleyebilirsin.","Spotify'da 'Chill Hits' listesine bak.","Kitap önerisi: Sapiens.","Film önerisi: Matrix."];
-    const days = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
+    // AI Yanıtları
+    const responses = {
+      "merhaba": "Merhaba! Hoş geldin 😊",
+      "selam": "Selam! Nasılsın?",
+      "naber": "İyiyim, sen nasılsın?",
+      "nasılsın": "İyiyim, harika hissediyorum!",
+      "adın ne": "Ben Furkan'ın geliştirdiği bir yapay zekâ asistanıyım.",
+      "furkan kimdir": "Furkan, web developer ve sosyal medya uzmanıdır.",
+      "hasan kimdir": "Hasan, Furkan'ın kuzenidir.",
+      "şaka yap": "Bilgisayar neden denize girmiş? Çok cache'i varmış!",
+      "motivasyon ver": "Pes etme, başarı yakında!",
+      "bilgi ver": "Bal asla bozulmaz. Bu gerçek bir bilgidir!",
+      "hava nasıl": "Şu anki hava durumunu veremem ama pencereden bakabilirsin 🙂"
+    };
 
-    while(greetings.length < 50) greetings.push("Selam! Nasılsın?");
-    while(jokes.length < 80) jokes.push("Klavye neden mutluymuş? Çünkü tuşları var!");
-    while(facts.length < 70) facts.push("Kediler 100 farklı ses çıkarabilir.");
-    while(motivations.length < 80) motivations.push("Kendine inan, pes etme!");
-    while(suggestions.length < 20) suggestions.push("Bugün yeni bir şarkı dinle.");
+    function normalize(text) {
+      return text.toLowerCase().replace(/[^\wğüşöçı ]/gi, "").trim();
+    }
 
     function getAIResponse(msg) {
-      const m = msg.toLowerCase();
-      if (m.includes("hasan kimdir")) return "Hasan, Furkan'ın kuzenidir.";
-      if (m.includes("furkan kimdir")) return "Furkan, web developer, e-ticaret girişimcisi ve sosyal medya uzmanıdır.";
-      if (m.includes("merhaba") || m.includes("selam")) return greetings[Math.floor(Math.random()*greetings.length)];
-      if (m.includes("nasılsın")) return "İyiyim, ya sen?";
-      if (m.includes("şaka")) return jokes[Math.floor(Math.random()*jokes.length)];
-      if (m.includes("bilgi")) return facts[Math.floor(Math.random()*facts.length)];
-      if (m.includes("motivasyon")) return motivations[Math.floor(Math.random()*motivations.length)];
-      if (m.includes("öneri")) return suggestions[Math.floor(Math.random()*suggestions.length)];
-      if (m.includes("bugün hangi gün")) return `Bugün ${days[new Date().getDay()]}.`;
-      return "Bunu anlayamadım, başka bir şey sor!";
+      const key = normalize(msg);
+      return responses[key] || "Bunu anlayamadım, başka bir şey sor!";
     }
 
     function toggleAI() {
@@ -153,7 +152,7 @@
         const reply = getAIResponse(userText);
         messages.innerHTML += `<div class="ai-msg"><strong>AI:</strong> ${reply}</div>`;
         messages.scrollTop = messages.scrollHeight;
-      }, 600);
+      }, 500);
       input.value = "";
     }
   </script>
