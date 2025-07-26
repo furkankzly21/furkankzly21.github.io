@@ -157,36 +157,51 @@
   <script>
     AOS.init({ duration: 1000, once: true });
 
-    // Parçacık efekti
     particlesJS('particles-js', {
-      particles: {
-        number: { value: 60 },
-        size: { value: 3 },
-        move: { speed: 1 },
-        line_linked: { enable: true },
-        color: { value: "#ffffff" }
-      }
+      particles: { number: { value: 60 }, size: { value: 3 }, move: { speed: 1 }, line_linked: { enable: true }, color: { value: "#ffffff" } }
     });
 
-    // AI Bilgi veritabanı (Günlük konuşmalar dahil)
+    const motivasyonlar = [
+      "Her gün bir adım daha ileri!",
+      "Başarı sabırla gelir.",
+      "Kendi hikayeni yazmaya devam et.",
+      "Bugün, hayatının en iyi günü olabilir.",
+      "Pes etme, büyük zaferler yakın!"
+    ];
+
     const aiAnswers = {
       "merhaba": "Merhaba! Hoş geldin 😊",
-      "selam": "Selam! Nasıl gidiyor?",
+      "selam": "Selam! Nasılsın?",
+      "günaydın": "Günaydın! Harika bir gün dilerim ☀️",
+      "iyi akşamlar": "İyi akşamlar! Umarım günün güzel geçmiştir.",
+      "iyi geceler": "İyi geceler! Tatlı rüyalar ✨",
       "naber": "İyiyim, sen nasılsın?",
-      "nasılsın": "Harika, sen?",
+      "nasılsın": "Harika gidiyorum, sen?",
       "iyi misin": "Çok iyiyim, teşekkürler!",
+      "ne yapıyorsun": "Seninle sohbet ediyorum 😎",
+      "ne var ne yok": "Her şey yolunda, senin tarafta durumlar nasıl?",
+      "teşekkürler": "Rica ederim, ne demek 🙏",
+      "sağ ol": "Rica ederim, önemli değil.",
+      "rica ederim": "Her zaman buradayım!",
+      "görüşürüz": "Görüşürüz, kendine iyi bak!",
+      "bay bay": "Bay bay 👋",
+      "hoşça kal": "Hoşça kal, sağlıcakla kal!",
+      "iyi günler": "İyi günler dilerim!",
+      "adın ne": "Ben Furkan'ın kişisel AI Asistanıyım.",
+      "yaşın kaç": "Ben dijitalim, yaşım yok 😅",
+      "seni kim yaptı": "Beni Furkan geliştirdi. Onun kişisel asistanıyım.",
+      "kimin asistanısın": "Ben Furkan'ın asistanıyım.",
+      "ne iş yaparsın": "Web, e-ticaret ve sosyal medya konularında yardımcı olurum.",
+      "hobilerin neler": "İnsanlara yardım etmek ve kodlarla oynamak!",
+      "sevdiğin renk": "Mor ve mavi tonlarını çok severim.",
+      "motivasyon": () => motivasyonlar[Math.floor(Math.random() * motivasyonlar.length)],
+      "şaka yap": "Bilgisayar neden denize girmiş? Çünkü çok fazla cache'lenmiş! 😂",
+      "bugün günlerden ne": () => `Bugün ${new Date().toLocaleDateString('tr-TR', { weekday: 'long' })}.`,
+      "hava durumu": "Şu anda hava durumuna bakamıyorum ama umarım güneşlidir ☀️",
       "muhammed furkan kimdir": "Furkan, web developer, e-ticaret girişimcisi ve sosyal medya uzmanıdır. HTML ve CSS biliyor, yapay zekâ öğreniyor.",
-      "furkan kimdir": "Furkan, yazılım öğrenimiyle başlayan genç bir girişimci ve web developer’dır.",
-      "ne iş yapıyorsun": "Web geliştirme, sosyal medya yönetimi ve e-ticaret üzerine çalışıyorum.",
-      "yeteneklerin neler": "HTML, CSS, Sosyal Medya Yönetimi, E-Ticaret ve Yapay Zekâ öğrenimi.",
-      "ai nedir": "AI (Yapay Zekâ), bilgisayarların insan benzeri zeka ve öğrenme kabiliyetleri sergilemesini sağlayan teknolojidir.",
-      "hedeflerin neler": "Yapay zekâ ve web teknolojilerini birleştirerek akıllı projeler geliştirmek, kendi markamı büyütmek.",
-      "projelerin neler": "Web portföy siteleri, e-ticaret platformları ve sosyal medya analiz projeleri yaptım.",
-      "hangi şehirde yaşıyorsun": "Şu anda Diyarbakır, Türkiye'de yaşıyorum.",
-      "seninle nasıl iletişim kurabilirim": "Bana e-posta (furkan21@gmail.com) veya Instagram (@muhammed_furkann1) üzerinden ulaşabilirsin."
+      "furkan kimdir": "Furkan, yazılım öğrenimiyle başlayan genç bir girişimci ve web developer’dır."
     };
 
-    // AI Chat
     const aiBtn = document.getElementById('ai-btn');
     const chatBox = document.getElementById('chat-box');
     const closeChat = document.getElementById('close-chat');
@@ -206,17 +221,10 @@
         let response = "Bununla ilgili bilgim yok.";
         for (const key in aiAnswers) {
           if (lowerMsg.includes(key)) {
-            response = aiAnswers[key];
+            response = typeof aiAnswers[key] === "function" ? aiAnswers[key]() : aiAnswers[key];
             break;
           }
         }
 
         setTimeout(() => {
-          chatMessages.innerHTML += `<div class="text-green-400"><strong>AI:</strong> ${response}</div>`;
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 500);
-      }
-    });
-  </script>
-</body>
-</html>
+          chatMessages.innerHTML += `<div class="text-green-400"><strong
