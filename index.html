@@ -6,6 +6,7 @@
   <title>Furkan - Portföy</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <style>
     body { margin: 0; font-family: 'Inter', sans-serif; background: #0a0a0a; color: #f5f5f5; scroll-behavior: smooth; }
@@ -13,12 +14,16 @@
     .gradient-text { background: linear-gradient(90deg, #4f46e5, #a855f7, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .btn-gradient { background: linear-gradient(90deg, #4f46e5, #a855f7); transition: 0.3s; }
     .btn-gradient:hover { transform: scale(1.05); opacity: 0.9; }
+    .section { padding: 100px 20px; }
+    .skill-bar { height: 8px; background: linear-gradient(90deg, #4f46e5, #a855f7); border-radius: 4px; width: 0; transition: width 1.5s ease-in-out; }
     #ai-btn { background: linear-gradient(to right, #9333ea, #3b82f6); position: fixed; bottom: 20px; right: 20px; padding: 12px 22px; border-radius: 30px; cursor: pointer; }
     #chat-box { position: fixed; bottom: 80px; right: 20px; width: 320px; background: #111; border: 1px solid #333; border-radius: 10px; padding: 10px; display: none; }
     #chat-messages { height: 230px; overflow-y: auto; background: #222; padding: 10px; border-radius: 6px; margin-bottom: 10px; }
     #chat-input { width: 100%; padding: 8px; border-radius: 6px; border: none; background: #333; color: white; }
     #quick-buttons button { padding: 5px 10px; border-radius: 6px; font-size: 14px; color: white; transition: 0.2s; }
     #quick-buttons button:hover { opacity: 0.8; }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 1s, transform 1s; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
@@ -26,16 +31,99 @@
   <!-- 3D Particles -->
   <div id="particles-js"></div>
 
-  <!-- Hero -->
-  <section class="text-center py-20">
-    <h1 class="text-5xl font-extrabold mb-4 gradient-text">Merhaba, ben Furkan</h1>
+  <!-- HERO -->
+  <section class="section text-center h-screen flex flex-col justify-center items-center">
+    <h1 class="text-6xl font-extrabold mb-4 gradient-text">Merhaba, ben Furkan</h1>
     <p class="text-xl mb-6">Web Developer • Sosyal Medya Uzmanı • E-Ticaret Girişimcisi</p>
     <p class="text-gray-400 mb-8">Hayallerini kodla, geleceğini inşa et.</p>
     <div class="flex justify-center gap-4 text-2xl">
       <a href="https://www.instagram.com/muhammed_furkann1" target="_blank" class="text-pink-400"><i class="fab fa-instagram"></i></a>
       <a href="mailto:furkan21@gmail.com" class="text-blue-400"><i class="fas fa-envelope"></i></a>
     </div>
+    <div class="mt-10 text-gray-400 animate-bounce"><i class="fas fa-chevron-down text-3xl"></i></div>
   </section>
+
+  <!-- HAKKIMDA -->
+  <section id="about" class="section bg-black bg-opacity-60 fade-in">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+      <div class="text-center md:text-left">
+        <img src="https://via.placeholder.com/400x400?text=Avatar" alt="Furkan Avatar" class="rounded-lg shadow-lg mx-auto md:mx-0">
+      </div>
+      <div>
+        <h2 class="text-4xl font-bold mb-6 gradient-text">Hakkımda</h2>
+        <p class="text-lg text-gray-300 leading-relaxed">
+          Ben Furkan, yazılım öğrenimiyle başlayan ve <strong>web developer</strong> olma yolunda ilerleyen genç bir girişimciyim.
+          <strong>HTML</strong> ve <strong>CSS</strong> konularında güçlü bir temele sahibim.
+          <strong>Sosyal medya yönetimi</strong>, <strong>e-ticaret girişimciliği</strong> ve <strong>dijital pazarlama</strong> alanlarında uzmanım.
+          Yapay zekâ teknolojilerine de ilgi duyuyor ve bu alanda kendimi geliştirmeye devam ediyorum.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HİZMETLER -->
+  <section id="services" class="section bg-zinc-900 fade-in">
+    <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Hizmetlerim</h2>
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+      <div class="p-8 bg-black rounded-lg border border-gray-700 text-center hover:scale-105 transition">
+        <i class="fas fa-code text-4xl text-blue-400 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">Web Developer</h3>
+        <p class="text-gray-400">Modern ve hızlı web siteleri tasarlıyorum.</p>
+      </div>
+      <div class="p-8 bg-black rounded-lg border border-gray-700 text-center hover:scale-105 transition">
+        <i class="fab fa-instagram text-4xl text-pink-400 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">Sosyal Medya</h3>
+        <p class="text-gray-400">Instagram & TikTok stratejileri oluşturuyorum.</p>
+      </div>
+      <div class="p-8 bg-black rounded-lg border border-gray-700 text-center hover:scale-105 transition">
+        <i class="fas fa-store text-4xl text-green-400 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">E-Ticaret</h3>
+        <p class="text-gray-400">Dropshipping ve e-ticaret danışmanlığı.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- YETENEKLER -->
+  <section id="skills" class="section bg-black fade-in">
+    <h2 class="text-4xl font-bold text-center mb-12 gradient-text">Yeteneklerim</h2>
+    <div class="max-w-4xl mx-auto space-y-6">
+      <div>
+        <p class="mb-2"><i class="fab fa-html5 text-orange-400"></i> HTML (%90)</p>
+        <div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 90%;"></div></div>
+      </div>
+      <div>
+        <p class="mb-2"><i class="fab fa-css3-alt text-blue-400"></i> CSS (%85)</p>
+        <div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 85%;"></div></div>
+      </div>
+      <div>
+        <p class="mb-2"><i class="fab fa-instagram text-pink-400"></i> Sosyal Medya Uzmanlığı (%80)</p>
+        <div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 80%;"></div></div>
+      </div>
+      <div>
+        <p class="mb-2"><i class="fas fa-store text-green-400"></i> E-Ticaret (%75)</p>
+        <div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 75%;"></div></div>
+      </div>
+      <div>
+        <p class="mb-2"><i class="fas fa-bullhorn text-yellow-400"></i> Dijital Pazarlama (%70)</p>
+        <div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 70%;"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- İLETİŞİM -->
+  <section id="contact" class="section bg-zinc-900 text-center fade-in">
+    <h2 class="text-4xl font-bold mb-8 gradient-text">İletişim</h2>
+    <p class="text-gray-400 mb-6">Benimle iletişime geçmek için:</p>
+    <div class="flex justify-center gap-6 text-2xl">
+      <a href="mailto:furkan21@gmail.com" class="text-blue-400 hover:scale-110 transition"><i class="fas fa-envelope"></i></a>
+      <a href="https://www.instagram.com/muhammed_furkann1" target="_blank" class="text-pink-400 hover:scale-110 transition"><i class="fab fa-instagram"></i></a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black border-t border-zinc-800 py-6 text-center text-gray-400 text-sm">
+    © 2025 Furkan. Tüm hakları saklıdır.
+  </footer>
 
   <!-- AI Asistan -->
   <button id="ai-btn"><i class="fas fa-robot"></i> AI Asistan</button>
@@ -53,8 +141,11 @@
   </div>
 
   <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    // Particles.js
+    AOS.init({ duration: 1000, once: true });
+
+    // Particles
     particlesJS("particles-js", {
       particles: { number: { value: 80 }, color: { value: "#ffffff" }, shape: { type: "circle" },
         opacity: { value: 0.6 }, size: { value: 3 }, line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
@@ -72,44 +163,46 @@
     aiBtn.addEventListener('click', () => chatBox.style.display = chatBox.style.display === 'block' ? 'none' : 'block');
     function sendQuickMessage(text) { chatInput.value = text; handleUserInput(text); }
 
-    // 300 Cevap Listeleri
     const greetings = [
       "Merhaba! Hoş geldin 😊", "Selam, nasılsın?", "Hey! Harika görünüyorsun.",
       "Günaydın!", "İyi akşamlar!", "Selam dostum!", "Hoş geldin, ne yapıyorsun?",
-      "N'abersin?", "Uzun zamandır görüşemedik!", "İyi ki geldin."
-      // 40+ selam cümlesi eklenir...
+      "N'abersin?", "Uzun zamandır görüşemedik!", "İyi ki geldin.",
+      "Nasılsın?", "Harika görünüyorsun!", "Selam arkadaşım!", "Keyfin nasıl?",
+      "Bugün nasılsın?", "Selam, işler nasıl?", "Merhaba dostum!", "Selam FurkanBot burada.",
+      "Hoş geldin!", "Selam! Sana nasıl yardımcı olabilirim?"
     ];
 
     const jokes = [
       "Bilgisayar neden denize girmiş? Çok fazla cache'i varmış!",
       "Programcı neden gözlük takar? Çünkü C# göremez!",
-      "Veritabanı neden ayrılmış? İlişkisi bozulmuş!"
-      // 80 şaka eklenecek...
+      "Veritabanı neden ayrılmış? İlişkisi bozulmuş!",
+      "Klavye neden üzgünmüş? Çok fazla 'shift' yapmış!"
     ];
 
     const facts = [
       "Bal asla bozulmaz.", "İlk web sitesi 1991 yılında yayınlandı.",
       "Dünya kendi etrafında 24 saatte döner.", "İnsan DNA'sı %50 muz DNA'sına benzer."
-      // 70 bilgi eklenecek...
     ];
 
     const motivations = [
       "Pes etme, başarı yakında!", "Bugün harika bir gün olacak.",
       "Kendine inan, her şey mümkün!", "Her zaman devam et, vazgeçme!"
-      // 80 motivasyon eklenecek...
     ];
 
     const suggestions = [
       "Bugün Inception filmini izleyebilirsin.",
       "Spotify'da 'Chill Hits' playlisti iyi gider.",
       "Başarı hikayesi kitapları okumak ilham verir."
-      // 20 öneri eklenecek...
     ];
 
     const days = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
 
     function getAIResponse(message) {
       const lowerMsg = message.toLowerCase();
+      if (lowerMsg.includes("furkan kimdir")) return "Furkan, web developer, e-ticaret girişimcisi ve sosyal medya uzmanıdır.";
+      if (lowerMsg.includes("furkan nerede")) return "Furkan, Diyarbakır, Türkiye’de yaşıyor.";
+      if (lowerMsg.includes("furkan ne yapar")) return "Web siteleri geliştirir, sosyal medya yönetir ve e-ticaret projeleri üretir.";
+      if (lowerMsg.includes("furkan hobileri")) return "Kodlama, yapay zekâ, dijital pazarlama ve teknoloji ile ilgilenir.";
       if (lowerMsg.includes("merhaba") || lowerMsg.includes("selam")) return greetings[Math.floor(Math.random()*greetings.length)];
       if (lowerMsg.includes("nasılsın")) return "İyiyim, ya sen?";
       if (lowerMsg.includes("adın ne")) return "Ben FurkanBot, Furkan'ın asistanıyım.";
@@ -118,7 +211,6 @@
       if (lowerMsg.includes("bilgi ver")) return facts[Math.floor(Math.random()*facts.length)];
       if (lowerMsg.includes("motivasyon")) return motivations[Math.floor(Math.random()*motivations.length)];
       if (lowerMsg.includes("öneri")) return suggestions[Math.floor(Math.random()*suggestions.length)];
-      if (lowerMsg.includes("furkan kimdir")) return "Furkan, web developer, e-ticaret girişimcisi ve sosyal medya uzmanıdır.";
       return "Bunu anlayamadım, başka bir şey sor!";
     }
 
