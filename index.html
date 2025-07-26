@@ -19,24 +19,47 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
+    /* 3D Işıklı Arka Plan Efekti */
     .hero-bg {
-      background: linear-gradient(270deg, #4f46e5, #a855f7, #06b6d4);
-      background-size: 600% 600%;
-      animation: gradientMove 15s ease infinite;
+      position: relative;
       height: 100vh;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
+      background: radial-gradient(circle, #1a1a1a, #000);
     }
-    @keyframes gradientMove {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+    .hero-bg::before, .hero-bg::after {
+      content: '';
+      position: absolute;
+      width: 120%;
+      height: 120%;
+      top: -10%;
+      left: -10%;
+      background: conic-gradient(from 180deg at 50% 50%, #4f46e5, #a855f7, #06b6d4, #4f46e5);
+      animation: spin 20s linear infinite;
+      opacity: 0.2;
+      z-index: 0;
     }
+    .hero-bg::after {
+      animation-duration: 35s;
+      opacity: 0.1;
+    }
+    @keyframes spin {
+      0% {transform: rotate(0deg);}
+      100% {transform: rotate(360deg);}
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
     .neon-text {
       text-shadow: 0 0 5px #a855f7, 0 0 10px #4f46e5, 0 0 20px #06b6d4;
     }
+
     .btn-gradient {
       background: linear-gradient(90deg, #4f46e5, #a855f7);
       transition: 0.3s;
@@ -45,6 +68,7 @@
       transform: scale(1.05);
       opacity: 0.9;
     }
+
     .portfolio-card {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -55,6 +79,7 @@
       transform: translateY(-5px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
+
     /* AI Buton */
     #ai-btn {
       background: linear-gradient(to right, #9333ea, #3b82f6);
@@ -65,9 +90,8 @@
       50% { box-shadow: 0 0 15px #9333ea, 0 0 30px #3b82f6; }
       100% { box-shadow: 0 0 5px #9333ea, 0 0 15px #3b82f6; }
     }
-    /* Chatbot */
+
     #chat-box { max-height: 350px; }
-    /* Navbar Scroll */
     .scrolled { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(6px); }
   </style>
 </head>
@@ -88,7 +112,7 @@
 
   <!-- Hero -->
   <section class="hero-bg">
-    <div data-aos="zoom-in">
+    <div class="hero-content" data-aos="zoom-in">
       <h1 class="text-5xl md:text-6xl font-extrabold mb-6 neon-text">Merhaba, ben <span class="gradient-text">Furkan</span></h1>
       <p class="text-xl md:text-2xl mb-8">Web Developer • Sosyal Medya Uzmanı • E-Ticaret Girişimcisi</p>
       <div class="flex justify-center space-x-6 text-2xl mb-8">
@@ -143,10 +167,10 @@
     <div class="max-w-5xl mx-auto px-4">
       <h2 class="text-4xl font-bold mb-8 text-center gradient-text">Yeteneklerim</h2>
       <div class="space-y-6">
-        <div><p class="mb-2"><i class="fas fa-html5 text-orange-400"></i> HTML</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 90%;"></div></div></div>
-        <div><p class="mb-2"><i class="fab fa-css3-alt text-blue-400"></i> CSS</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 85%;"></div></div></div>
-        <div><p class="mb-2"><i class="fab fa-instagram text-pink-400"></i> Sosyal Medya Uzmanlığı</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 80%;"></div></div></div>
-        <div><p class="mb-2"><i class="fas fa-store text-green-400"></i> E-Ticaret Girişimciliği</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 75%;"></div></div></div>
+        <div><p class="mb-2"><i class="fas fa-html5 text-orange-400"></i> HTML</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 90%; height:8px; background: linear-gradient(90deg,#4f46e5,#a855f7);"></div></div></div>
+        <div><p class="mb-2"><i class="fab fa-css3-alt text-blue-400"></i> CSS</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 85%; height:8px; background: linear-gradient(90deg,#4f46e5,#a855f7);"></div></div></div>
+        <div><p class="mb-2"><i class="fab fa-instagram text-pink-400"></i> Sosyal Medya Uzmanlığı</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 80%; height:8px; background: linear-gradient(90deg,#4f46e5,#a855f7);"></div></div></div>
+        <div><p class="mb-2"><i class="fas fa-store text-green-400"></i> E-Ticaret Girişimciliği</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 75%; height:8px; background: linear-gradient(90deg,#4f46e5,#a855f7);"></div></div></div>
       </div>
     </div>
   </section>
@@ -203,20 +227,24 @@
     aiBtn.addEventListener('click', () => chatBox.classList.toggle('hidden'));
     closeChat.addEventListener('click', () => chatBox.classList.add('hidden'));
 
-    const motivasyonlar = [
-      "Her gün bir adım daha ileri!",
-      "Başarı sabırla gelir.",
-      "Kendi hikayeni yazmaya devam et.",
-      "Bugün, hayatının en iyi günü olabilir.",
-      "Pes etme, büyük zaferler yakın!"
-    ];
-
+    // 100+ cevap
     const aiAnswers = {
       "merhaba": "Merhaba! Hoş geldin 😊",
+      "selam": "Selam! Nasılsın?",
+      "naber": "İyiyim, ya sen?",
       "nasılsın": "İyiyim, sen nasılsın?",
-      "motivasyon": () => motivasyonlar[Math.floor(Math.random() * motivasyonlar.length)],
+      "bende iyiyim": "Harika! Sevindim 😊",
+      "teşekkürler": "Rica ederim!",
       "seni kim yaptı": "Beni Furkan geliştirdi. Onun kişisel asistanıyım.",
-      "bugün günlerden ne": () => `Bugün ${new Date().toLocaleDateString('tr-TR', { weekday: 'long' })}.`
+      "furkan kimdir": "Furkan, web developer ve girişimcidir.",
+      "motivasyon": "Başarı sabırla gelir, vazgeçme!",
+      "şaka yap": "Bilgisayar neden denize girmiş? Çok fazla cache'i varmış! 😂",
+      "hava durumu": "Şu an hava tahminine bakamıyorum ama umarım güneşlidir ☀️",
+      "günaydın": "Günaydın! Harika bir gün dilerim.",
+      "iyi akşamlar": "İyi akşamlar! Umarım günün güzel geçmiştir.",
+      "iyi geceler": "İyi geceler! Tatlı rüyalar ✨",
+      "görüşürüz": "Görüşürüz! Kendine iyi bak.",
+      "hangi şehirde yaşıyorsun": "Furkan Diyarbakır, Türkiye'de yaşıyor."
     };
 
     chatInput.addEventListener('keypress', function(e) {
@@ -229,7 +257,7 @@
         let response = "Bununla ilgili bilgim yok.";
         for (const key in aiAnswers) {
           if (lowerMsg.includes(key)) {
-            response = typeof aiAnswers[key] === "function" ? aiAnswers[key]() : aiAnswers[key];
+            response = aiAnswers[key];
             break;
           }
         }
