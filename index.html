@@ -3,219 +3,194 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Furkan - Portfolyo</title>
+  <title>Muhammed Furkan - Portfolyo</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       background-color: #0a0a0a;
       color: #f5f5f5;
       font-family: 'Inter', sans-serif;
     }
     .gradient-text {
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      background: linear-gradient(90deg, #4f46e5, #a855f7, #06b6d4);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-    }
-    .nav-link {
-      position: relative;
     }
     .nav-link::after {
       content: '';
       position: absolute;
       width: 0;
       height: 2px;
-      bottom: -2px;
+      bottom: -4px;
       left: 0;
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-      transition: width 0.3s;
+      background: linear-gradient(90deg, #4f46e5, #a855f7);
+      transition: width 0.3s ease;
     }
     .nav-link:hover::after {
       width: 100%;
     }
-    .project-card {
-      transition: transform 0.3s, box-shadow 0.3s;
+    .btn-gradient {
+      background: linear-gradient(90deg, #4f46e5, #a855f7);
+      transition: transform 0.3s ease, opacity 0.3s ease;
     }
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    .btn-gradient:hover {
+      transform: translateY(-2px) scale(1.05);
+      opacity: 0.9;
     }
-    .custom-shadow {
-      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+    .skill-bar {
+      height: 8px;
+      background: linear-gradient(90deg, #4f46e5, #a855f7);
+      border-radius: 4px;
     }
-    .tech-badge {
-      background-color: #1a1a1a;
-      border: 1px solid #333;
+    .typing {
+      display: inline-block;
+      border-right: 2px solid #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: blink 0.75s step-end infinite;
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    .animated-bg {
+      background: linear-gradient(270deg, #4f46e5, #a855f7, #06b6d4);
+      background-size: 600% 600%;
+      animation: gradientMove 15s ease infinite;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
   </style>
 </head>
 <body>
 
   <!-- Navbar -->
-  <nav class="bg-black border-b border-zinc-800 fixed w-full z-10">
+  <nav class="bg-black/80 backdrop-blur border-b border-zinc-800 fixed w-full z-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between h-16">
-        <div class="flex items-center">
-          <a href="#" class="text-xl font-bold gradient-text">Furkan</a>
-        </div>
-        <div class="flex items-center space-x-8">
-          <a href="#about" class="nav-link text-gray-300 hover:text-white transition-colors">Hakkımda</a>
-          <a href="#projects" class="nav-link text-gray-300 hover:text-white transition-colors">Projeler</a>
-          <a href="#skills" class="nav-link text-gray-300 hover:text-white transition-colors">Yetenekler</a>
-          <a href="#contact" class="nav-link text-gray-300 hover:text-white transition-colors">İletişim</a>
+      <div class="flex justify-between h-16 items-center">
+        <a href="#" class="text-xl font-bold gradient-text">Furkan</a>
+        <div class="space-x-8 hidden md:flex">
+          <a href="#about" class="relative nav-link text-gray-300 hover:text-white transition">Hakkımda</a>
+          <a href="#skills" class="relative nav-link text-gray-300 hover:text-white transition">Yetenekler</a>
+          <a href="#contact" class="relative nav-link text-gray-300 hover:text-white transition">İletişim</a>
         </div>
       </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="pt-24 pb-12 bg-black">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row items-center justify-between">
-        <div class="md:w-1/2 mb-10 md:mb-0">
-          <h1 class="text-4xl md:text-5xl font-bold mb-4">Merhaba, ben <span class="gradient-text">Furkan</span></h1>
-          <p class="text-xl text-gray-300 mb-6">Software Developer & Front-end Developer</p>
-          <p class="text-gray-400 mb-8">Modern ve kullanıcı dostu web uygulamaları geliştiren tutkulu bir yazılım geliştiriciyim. Yenilikçi teknolojileri kullanarak işlevsel ve etkileyici dijital deneyimler yaratıyorum.</p>
-          <div class="flex space-x-4">
-            <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white font-medium hover:opacity-90 transition-opacity">İletişime Geç</a>
-            <a href="#projects" class="px-6 py-3 bg-zinc-800 rounded-lg text-white font-medium hover:bg-zinc-700 transition-colors">Projelerimi Gör</a>
-          </div>
-        </div>
-      </div>
+  <section class="animated-bg pt-32 pb-16 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up">
+      <h1 class="text-5xl md:text-6xl font-bold mb-4">Merhaba, ben <span class="gradient-text">Furkan</span></h1>
+      <p class="text-xl md:text-2xl text-gray-200 mb-6">
+        <span id="typing-text" class="typing"></span>
+      </p>
+      <a href="#contact" class="btn-gradient px-8 py-3 rounded-lg text-white font-medium">İletişime Geç</a>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-16 bg-zinc-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Hakkımda</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div class="bg-black p-8 rounded-xl border border-zinc-800 custom-shadow">
-          <h3 class="text-2xl font-semibold mb-4">Kişisel Bilgiler</h3>
-          <div class="space-y-4">
-            <div class="flex items-center">
-              <div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-user text-blue-400"></i>
-              </div>
-              <div>
-                <p class="text-gray-400 text-sm">İsim</p>
-                <p class="text-white">Furkan</p>
-              </div>
-            </div>
-            <div class="flex items-center">
-              <div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-envelope text-blue-400"></i>
-              </div>
-              <div>
-                <p class="text-gray-400 text-sm">Email</p>
-                <p class="text-white">furkan21@gmail.com</p>
-              </div>
-            </div>
-            <div class="flex items-center">
-              <div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center mr-4">
-                <i class="fas fa-map-marker-alt text-blue-400"></i>
-              </div>
-              <div>
-                <p class="text-gray-400 text-sm">Konum</p>
-                <p class="text-white">İstanbul, Türkiye</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="py-16 bg-zinc-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Projelerim</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <!-- Project 1 -->
-        <div class="project-card bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Görev Yönetim Uygulaması</h3>
-            <p class="text-gray-400 mb-4">Sürükle-bırak arayüzlü görev yönetim sistemi.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Vue.js</span>
-              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Firebase</span>
-              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Tailwind CSS</span>
-            </div>
-            <div class="flex justify-between">
-              <a href="#" class="text-blue-400 hover:text-blue-300 flex items-center">Demo<i class="fas fa-external-link-alt ml-1"></i></a>
-              <a href="#" class="text-purple-400 hover:text-purple-300 flex items-center">GitHub<i class="fab fa-github ml-1"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="project-card bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Hava Durumu Dashboard</h3>
-            <p class="text-gray-400 mb-4">API ile çalışan etkileşimli hava durumu arayüzü.</p>
-            <div class="flex flex-wrap gap-2 mb-4">
-              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">JavaScript</span>
-              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">OpenWeather API</span>
-              <span class="tech-badge px-3 py-1 text-xs rounded-full text-gray-300">Chart.js</span>
-            </div>
-            <div class="flex justify-between">
-              <a href="#" class="text-blue-400 hover:text-blue-300 flex items-center">Demo<i class="fas fa-external-link-alt ml-1"></i></a>
-              <a href="#" class="text-purple-400 hover:text-purple-300 flex items-center">GitHub<i class="fab fa-github ml-1"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
+  <section id="about" class="py-20 bg-zinc-900" data-aos="fade-up">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold mb-8 text-center gradient-text">Hakkımda</h2>
+      <p class="text-lg text-gray-300 leading-relaxed text-center">
+        Yazılım öğrenimiyle başlayan ve web developer olma yolunda ilerleyen genç bir girişimciyim.
+        <strong>HTML ve CSS’i öğrendim, JavaScript konusunda başlangıç seviyesindeyim ve kendimi sürekli geliştiriyorum.</strong>
+        Yapay zekâ teknolojilerine ilgim büyük ve e-ticaret sektöründe stratejiler, iş modelleri ve temel dinamikler konusunda derin bilgiye sahibim.
+        Sosyal medya yönetimi ve dijital pazarlama alanında deneyim kazandım; Instagram, TikTok ve Facebook platformlarında sayfa büyütme, etkileşim artırma ve içerik üretimi konusunda çalıştım.
+        <strong>Amacım, yazılımda profesyonelleşirken yapay zekâ ve dijital pazarlama alanlarında yenilikçi projeler geliştirmek.</strong>
+      </p>
     </div>
   </section>
 
   <!-- Skills Section -->
-  <section id="skills" class="py-16 bg-zinc-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-bold mb-12 text-center gradient-text">Yeteneklerim</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-black p-8 rounded-xl border border-zinc-800 custom-shadow">
-          <div class="flex items-center mb-6">
-            <div class="w-12 h-12 bg-blue-900/20 rounded-lg flex items-center justify-center mr-4">
-              <i class="fas fa-code text-blue-400 text-xl"></i>
-            </div>
-            <h3 class="text-xl font-semibold">Frontend</h3>
+  <section id="skills" class="py-20 bg-black" data-aos="fade-up">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold mb-8 text-center gradient-text">Yeteneklerim</h2>
+      <div class="space-y-6">
+        <div>
+          <p class="text-gray-300 mb-2">HTML</p>
+          <div class="bg-zinc-800 rounded">
+            <div class="skill-bar" style="width: 90%;"></div>
           </div>
-          <ul class="list-disc list-inside text-gray-300">
-            <li>HTML, CSS, JavaScript</li>
-            <li>React, Vue</li>
-            <li>Tailwind CSS, Bootstrap</li>
-          </ul>
         </div>
-        <!-- Backend and Other Skills Cards buraya eklenebilir -->
+        <div>
+          <p class="text-gray-300 mb-2">CSS</p>
+          <div class="bg-zinc-800 rounded">
+            <div class="skill-bar" style="width: 85%;"></div>
+          </div>
+        </div>
+        <div>
+          <p class="text-gray-300 mb-2">JavaScript</p>
+          <div class="bg-zinc-800 rounded">
+            <div class="skill-bar" style="width: 70%;"></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="py-16 bg-black">
-    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl font-bold mb-8 gradient-text">İletişime Geç</h2>
-      <p class="text-gray-400 mb-6">Benimle projeler, iş teklifleri ya da merak ettiğiniz konular için iletişime geçebilirsiniz.</p>
-      <div class="space-y-4 text-left">
-        <div class="flex items-center">
-          <i class="fas fa-envelope text-blue-400 w-8"></i>
-          <span class="text-white ml-2">furkan21@gmail.com</span>
-        </div>
-        <div class="flex items-center">
-          <i class="fas fa-map-marker-alt text-blue-400 w-8"></i>
-          <span class="text-white ml-2">Diyarbakır, Türkiye</span>
-        </div>
-        <div class="flex items-center">
-          <i class="fab fa-linkedin text-blue-400 w-8"></i>
-          <a href="#" class="ml-2 text-white hover:underline">Instagram profilim</a>
-        </div>
-        <div class="flex items-center">
-          <i class="fab fa-github text-purple-400 w-8"></i>
-          <a href="#" class="ml-2 text-white hover:underline">GitHub</a>
-        </div>
+  <section id="contact" class="py-20 bg-zinc-900" data-aos="fade-up">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-4xl font-bold mb-8 gradient-text">İletişim</h2>
+      <p class="text-gray-400 mb-6">Bana ulaşmak için aşağıdaki bağlantılardan birini kullanabilirsiniz:</p>
+      <div class="flex flex-col space-y-4 items-center">
+        <a href="mailto:furkan21@gmail.com" class="flex items-center text-white hover:text-blue-400 transition">
+          <i class="fas fa-envelope w-6 text-blue-400"></i> <span class="ml-2">furkan21@gmail.com</span>
+        </a>
+        <a href="https://www.instagram.com/muhammed_furkann1" target="_blank" class="flex items-center text-white hover:text-pink-400 transition">
+          <i class="fab fa-instagram w-6 text-pink-400"></i> <span class="ml-2">Instagram Profilim</span>
+        </a>
+        <a href="https://github.com/" target="_blank" class="flex items-center text-white hover:text-gray-400 transition">
+          <i class="fab fa-github w-6 text-gray-400"></i> <span class="ml-2">GitHub</span>
+        </a>
       </div>
     </div>
   </section>
 
+  <!-- Footer -->
+  <footer class="bg-black border-t border-zinc-800 py-6 text-center text-gray-400 text-sm">
+    © 2025 Furkan. Tüm hakları saklıdır.
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+
+    // Typing effect
+    const textArray = ["Software Developer", "Front-End Developer", "Web Designer"];
+    let typingIndex = 0, charIndex = 0;
+    const typingText = document.getElementById("typing-text");
+
+    function type() {
+      if (charIndex < textArray[typingIndex].length) {
+        typingText.textContent += textArray[typingIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, 100);
+      } else {
+        setTimeout(erase, 2000);
+      }
+    }
+
+    function erase() {
+      if (charIndex > 0) {
+        typingText.textContent = textArray[typingIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(erase, 50);
+      } else {
+        typingIndex = (typingIndex + 1) % textArray.length;
+        setTimeout(type, 500);
+      }
+    }
+    document.addEventListener("DOMContentLoaded", () => setTimeout(type, 500));
+  </script>
 </body>
 </html>
