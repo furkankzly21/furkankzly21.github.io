@@ -6,89 +6,135 @@
   <title>Muhammed Furkan - Portföy</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
   <style>
-    html { scroll-behavior: smooth; }
-    body { background: #0a0a0a; color: #f5f5f5; font-family: 'Inter', sans-serif; transition: 0.4s; }
-    .light-mode { background: #f5f5f5; color: #111; }
-    .gradient-text { background: linear-gradient(90deg, #4f46e5, #a855f7, #06b6d4);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .neon-text { color: #fff; text-shadow: 0 0 5px #a855f7, 0 0 10px #4f46e5, 0 0 20px #06b6d4; }
-    .btn-gradient { background: linear-gradient(90deg, #4f46e5, #a855f7); transition: 0.3s; }
-    .btn-gradient:hover { transform: scale(1.05); opacity: 0.9; }
-    .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1rem; }
-    .skill-bar { height: 8px; background: linear-gradient(90deg, #4f46e5, #a855f7); border-radius: 4px; animation: fillBar 1.5s forwards; }
-    @keyframes fillBar { from {width: 0;} to {width: 100%;} }
-    .typing { display: inline-block; border-right: 2px solid #fff; white-space: nowrap; overflow: hidden; animation: blink 0.75s step-end infinite; }
-    @keyframes blink { 50% { border-color: transparent; } }
-    .hero-bg { position: relative; height: 100vh; overflow: hidden; }
-    #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; }
-    .hero-content { position: relative; z-index: 1; }
-    .portfolio-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0.75rem; transition: transform 0.3s, box-shadow 0.3s; }
-    .portfolio-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); }
-    .cta-section { text-align: center; padding: 4rem 2rem; background: linear-gradient(90deg, #4f46e5, #a855f7); border-radius: 1rem; margin: 4rem auto; max-width: 900px; }
-    .cta-section h2 { color: #fff; font-size: 2rem; }
-    .slider-container { display: flex; overflow-x: auto; gap: 1rem; scroll-snap-type: x mandatory; }
-    .slider-container::-webkit-scrollbar { display: none; }
-    .slider-item { flex: 0 0 auto; scroll-snap-align: start; width: 280px; }
-    .mode-toggle { cursor: pointer; transition: transform 0.3s; }
-    .mode-toggle:hover { transform: scale(1.2); }
+    body {
+      background: #0a0a0a;
+      color: #f5f5f5;
+      font-family: 'Inter', sans-serif;
+      transition: 0.4s;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #4f46e5, #a855f7, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    /* Navbar Link Hover */
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background: linear-gradient(90deg, #4f46e5, #a855f7);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    /* Hero Title Animation */
+    .shine-text {
+      background: linear-gradient(90deg, #fff, #a855f7, #fff);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 3s linear infinite;
+    }
+    @keyframes shine {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .btn-gradient {
+      background: linear-gradient(90deg, #4f46e5, #a855f7);
+      transition: 0.3s;
+    }
+    .btn-gradient:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+    /* Skill Bar Animation */
+    .skill-bar {
+      height: 8px;
+      background: linear-gradient(90deg, #4f46e5, #a855f7);
+      border-radius: 4px;
+      animation: fillBar 1.5s forwards;
+    }
+    @keyframes fillBar { from { width: 0; } to { width: 100%; } }
+    /* Footer Gradient Line */
+    footer::before {
+      content: '';
+      display: block;
+      height: 3px;
+      background: linear-gradient(90deg, #4f46e5, #a855f7, #06b6d4);
+      margin-bottom: 10px;
+    }
+    .vizyon-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      transition: transform 0.3s;
+    }
+    .vizyon-box:hover { transform: translateY(-3px); }
   </style>
 </head>
 <body>
 
   <!-- Navbar -->
-  <nav class="fixed w-full z-20 glass">
+  <nav class="fixed w-full bg-black/80 backdrop-blur border-b border-zinc-800 z-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
       <a href="#" class="text-xl font-bold gradient-text">Furkan</a>
       <div class="hidden md:flex space-x-8">
-        <a href="#about" class="hover:text-blue-400">Hakkımda</a>
-        <a href="#services" class="hover:text-blue-400">Hizmetler</a>
-        <a href="#portfolio" class="hover:text-blue-400">Portföy</a>
-        <a href="#skills" class="hover:text-blue-400">Yetenekler</a>
-        <a href="#contact" class="hover:text-blue-400">İletişim</a>
+        <a href="#about" class="nav-link hover:text-blue-400">Hakkımda</a>
+        <a href="#services" class="nav-link hover:text-blue-400">Hizmetler</a>
+        <a href="#portfolio" class="nav-link hover:text-blue-400">Portföy</a>
+        <a href="#skills" class="nav-link hover:text-blue-400">Yetenekler</a>
+        <a href="#contact" class="nav-link hover:text-blue-400">İletişim</a>
       </div>
-      <div onclick="toggleMode()" class="mode-toggle text-xl text-yellow-300"><i class="fas fa-sun"></i></div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="hero-bg flex items-center justify-center text-center">
-    <div id="particles-js"></div>
-    <div class="hero-content max-w-4xl px-4" data-aos="fade-up">
-      <h1 class="text-5xl md:text-6xl font-extrabold mb-6 neon-text">Merhaba, ben <span class="gradient-text">Furkan</span></h1>
-      <p class="text-2xl md:text-3xl mb-8">
-        <span id="typing-text" class="typing"></span>
-      </p>
-      <div class="space-x-4">
-        <a href="#contact" class="btn-gradient px-10 py-4 rounded-lg text-lg text-white font-semibold shadow-lg">İletişime Geç</a>
-        <a href="#portfolio" class="px-10 py-4 border border-gray-300 rounded-lg text-lg text-white font-semibold hover:bg-gray-700">Portföy</a>
-      </div>
-      <div class="mt-12 text-gray-400 animate-bounce">↓ Scroll Down ↓</div>
+  <section class="h-screen flex flex-col justify-center items-center text-center px-4">
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-4 shine-text">Merhaba, ben Furkan</h1>
+    <p class="text-xl text-gray-300 mb-6">Web Developer • Sosyal Medya Uzmanı • E-Ticaret Girişimcisi</p>
+    <a href="#contact" class="btn-gradient px-8 py-3 rounded-lg text-lg text-white font-semibold">İletişime Geç</a>
+    <div class="mt-12 text-gray-400 animate-bounce">
+      <i class="fas fa-chevron-down text-2xl"></i>
     </div>
   </section>
 
   <!-- Hakkımda -->
-  <section id="about" class="py-20 bg-zinc-900" data-aos="fade-up">
-    <div class="max-w-5xl mx-auto px-4 text-center">
+  <section id="about" class="py-16 bg-zinc-900 px-6">
+    <div class="max-w-4xl mx-auto text-center">
       <h2 class="text-4xl font-bold mb-8 gradient-text">Hakkımda</h2>
-      <p class="text-lg text-gray-300 leading-relaxed">
-        Ben <strong>Web Developer</strong>, <strong>E-Ticaret Girişimcisi</strong> ve
-        <strong>Sosyal Medya Uzmanı</strong> olarak dijital dünyada profesyonel projeler üretiyorum.
-        HTML ve CSS’de ileri seviye, dijital pazarlama ve markalaşmada deneyim sahibiyim.
+      <p class="text-gray-300 text-lg leading-relaxed">
+        Furkan, yazılım öğrenimiyle başlayan ve web developer olma yolunda ilerleyen genç bir girişimcidir.
+        <strong>HTML ve CSS</strong> konularında kendini geliştirmiş,
+        <strong>sosyal medya yönetimi</strong> ve
+        <strong>e-ticaret girişimciliği</strong> alanlarında uzmanlaşmıştır.
+        Dijital pazarlama ve modern web tasarımıyla ilgilenir.
       </p>
+      <div class="vizyon-box">
+        <h3 class="text-xl font-semibold mb-2 gradient-text">Vizyonum</h3>
+        <p class="text-gray-400">Amacım, modern web teknolojileri ve dijital pazarlama alanında yenilikçi projeler üreterek değer katmak.</p>
+      </div>
     </div>
   </section>
 
   <!-- Hizmetler -->
-  <section id="services" class="py-20 bg-black" data-aos="fade-up">
-    <div class="max-w-6xl mx-auto px-4">
+  <section id="services" class="py-16 bg-black px-6">
+    <div class="max-w-6xl mx-auto">
       <h2 class="text-4xl font-bold mb-12 text-center gradient-text">Hizmetlerim</h2>
       <div class="grid md:grid-cols-3 gap-8">
         <div class="portfolio-card p-8 text-center">
           <i class="fas fa-code text-4xl text-blue-400 mb-4"></i>
           <h3 class="text-xl font-semibold mb-2">Web Developer</h3>
-          <p class="text-gray-400">Modern, hızlı ve mobil uyumlu web siteleri tasarlıyorum.</p>
+          <p class="text-gray-400">HTML ve CSS ile modern web siteleri geliştiriyorum.</p>
         </div>
         <div class="portfolio-card p-8 text-center">
           <i class="fas fa-shopping-cart text-4xl text-green-400 mb-4"></i>
@@ -104,33 +150,9 @@
     </div>
   </section>
 
-  <!-- Portföy Slider -->
-  <section id="portfolio" class="py-20 bg-zinc-900" data-aos="fade-up">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-4xl font-bold mb-12 text-center gradient-text">Portföy Çalışmalarım</h2>
-      <div class="slider-container">
-        <div class="slider-item portfolio-card p-6">
-          <h3 class="text-xl font-semibold mb-2">Kişisel Blog Sitesi</h3>
-          <p class="text-gray-400 mb-4">HTML ve CSS ile tasarlanan modern blog sitesi.</p>
-          <a href="#" class="text-blue-400 hover:text-blue-300">Demo</a>
-        </div>
-        <div class="slider-item portfolio-card p-6">
-          <h3 class="text-xl font-semibold mb-2">E-Ticaret Landing Page</h3>
-          <p class="text-gray-400 mb-4">Dropshipping odaklı mobil uyumlu sayfa.</p>
-          <a href="#" class="text-blue-400 hover:text-blue-300">Demo</a>
-        </div>
-        <div class="slider-item portfolio-card p-6">
-          <h3 class="text-xl font-semibold mb-2">Sosyal Medya Dashboard</h3>
-          <p class="text-gray-400 mb-4">Instagram ve TikTok analiz dashboardu.</p>
-          <a href="#" class="text-blue-400 hover:text-blue-300">Demo</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Yetenekler -->
-  <section id="skills" class="py-20 bg-black" data-aos="fade-up">
-    <div class="max-w-5xl mx-auto px-4">
+  <section id="skills" class="py-16 bg-black px-6">
+    <div class="max-w-5xl mx-auto">
       <h2 class="text-4xl font-bold mb-8 text-center gradient-text">Yeteneklerim</h2>
       <div class="space-y-6">
         <div><p class="mb-2"><i class="fas fa-html5 text-orange-400"></i> HTML</p><div class="bg-zinc-800 rounded"><div class="skill-bar" style="width: 90%;"></div></div></div>
@@ -142,77 +164,9 @@
     </div>
   </section>
 
-  <!-- CTA -->
-  <div class="cta-section" data-aos="zoom-in">
-    <h2>Benimle çalışmak ister misiniz?</h2>
-    <a href="#contact" class="btn-gradient px-8 py-3 mt-4 inline-block rounded text-white">Hadi Konuşalım</a>
-  </div>
-
-  <!-- İletişim -->
-  <section id="contact" class="py-20 bg-zinc-900" data-aos="fade-up">
-    <div class="max-w-3xl mx-auto px-4 text-center glass">
-      <h2 class="text-4xl font-bold mb-8 gradient-text">İletişim</h2>
-      <form class="space-y-4">
-        <input type="text" placeholder="Adınız" class="w-full p-3 rounded bg-zinc-800 text-white">
-        <input type="email" placeholder="E-posta" class="w-full p-3 rounded bg-zinc-800 text-white">
-        <textarea placeholder="Mesajınız" class="w-full p-3 rounded bg-zinc-800 text-white h-32"></textarea>
-        <button type="submit" class="btn-gradient w-full py-3 rounded text-lg text-white font-semibold">Gönder</button>
-      </form>
-      <div class="flex justify-center gap-6 text-2xl mt-6">
-        <a href="mailto:furkan21@gmail.com" class="text-blue-400 hover:scale-110 transition"><i class="fas fa-envelope"></i></a>
-        <a href="https://www.instagram.com/muhammed_furkann1" target="_blank" class="text-pink-400 hover:scale-110 transition"><i class="fab fa-instagram"></i></a>
-        <a href="https://github.com/" target="_blank" class="text-gray-400 hover:scale-110 transition"><i class="fab fa-github"></i></a>
-      </div>
-    </div>
-  </section>
-
   <!-- Footer -->
   <footer class="bg-black border-t border-zinc-800 py-6 text-center text-gray-400 text-sm">
     © 2025 Furkan. Tüm hakları saklıdır.
   </footer>
-
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script>
-    AOS.init({ duration: 1000, once: true });
-
-    // Typing effect
-    const textArray = ["Web Developer", "E-Ticaret Girişimcisi", "Sosyal Medya Uzmanı"];
-    let typingIndex = 0, charIndex = 0;
-    const typingText = document.getElementById("typing-text");
-    function type() {
-      if (charIndex < textArray[typingIndex].length) {
-        typingText.textContent += textArray[typingIndex].charAt(charIndex);
-        charIndex++; setTimeout(type, 100);
-      } else { setTimeout(erase, 2000); }
-    }
-    function erase() {
-      if (charIndex > 0) {
-        typingText.textContent = textArray[typingIndex].substring(0, charIndex - 1);
-        charIndex--; setTimeout(erase, 50);
-      } else {
-        typingIndex = (typingIndex + 1) % textArray.length;
-        setTimeout(type, 500);
-      }
-    }
-    document.addEventListener("DOMContentLoaded", () => setTimeout(type, 500));
-
-    // Parçacık efekti
-    particlesJS('particles-js', {
-      particles: {
-        number: { value: 60 },
-        size: { value: 3 },
-        move: { speed: 1 },
-        line_linked: { enable: true },
-        color: { value: "#ffffff" }
-      }
-    });
-
-    // Dark / Light Mode
-    function toggleMode() {
-      document.body.classList.toggle("light-mode");
-    }
-  </script>
 </body>
 </html>
