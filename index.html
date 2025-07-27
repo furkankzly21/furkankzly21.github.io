@@ -97,85 +97,96 @@
     <div id="ai-footer"><input type="text" id="ai-input" placeholder="Mesaj yaz..." onkeydown="if(event.key==='Enter'){sendMessage()}"></div>
   </div>
 <script>
-  let userName = ""; // Kullanıcı adını hatırlamak için
-
   const days = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
+  let userName = ""; // Kullanıcının adını hafızada tutacak
 
   const aiResponses = {
     "merhaba": "Merhaba! Hoş geldin 😊",
     "selam": "Selam! Nasılsın?",
     "nasılsın": "Harika hissediyorum! Sen nasılsın?",
     "naber": "İyiyim, sen nasılsın?",
-    "bende iyiyim": "Süper, böyle devam et! 😎",
-    "adın ne": "Ben Furkan'ın AI asistanıyım, adım yok ama çok havalıyım 🤖",
-    "furkan kimdir": "Furkan; yazılımla ilgilenen, e-ticaret girişimcisi ve sosyal medya uzmanıdır.",
-    "furkan hakkında ne düşünüyorsun": "Furkan o kadar iyi ki, ben bile ona hayranım! 😄",
+    "bende iyiyim": "Bomba gibi!",
+    "adın ne": "Ben Furkan'ın AI asistanıyım, adım yok ama kalbim var. 🤖",
+    "furkan kimdir": "Furkan; yazılımla ilgilenen, e-ticaret girişimcisi ve sosyal medya uzmanı bir gençtir!",
+    "furkan hakkında ne düşünüyorsun": "Furkan o kadar iyi ki, yapay zekâ bile ona hayran! 😎",
     "hasan kimdir": "Hasan, Furkan'ın kuzeni.",
-    "ersin kimdir": "Ersin de Furkan'ın kuzenlerinden biri.",
-    "hava nasıl": "Diyarbakır o kadar sıcak ki, gölgeler bile tatil yapıyor! 🌞",
-    "diyarbakır sıcak mı": "Sıcak mı? Klima bile 'ben pes' dedi!",
-    "şaka yap": "Bilgisayar neden kahve içmez? Çünkü çok fazla 'Java' içer! 😂",
-    "motivasyon ver": "Başarı, vazgeçmeyenlerin eseridir. Devam et, sen yaparsın! 💪",
-    "günaydın": "Günaydın! Yeni fırsatlar seni bekliyor. ☕",
-    "iyi geceler": "İyi geceler! Tatlı rüyalar gör. 🌙",
-    "kitap öner": "‘Bilinçli Programcı’ veya ‘İknanın Psikolojisi’ kitaplarını öneririm.",
-    "film öner": "‘Interstellar’ veya ‘Inception’ izlemelisin! 🎬",
-    "şarkı öner": "Duman - Belki Alışman Lazım tam moduna uygun. 🎶",
-    "bana sır söyle": "Benim sırrım: Kodlarımı Furkan yazdı. 🤫",
-    "espiri yap": "Furkan bir kod yazdı, hata bile teşekkür etti! 😂",
-    "bana bilgi ver": "Dünya, kendi ekseni etrafında 24 saatte döner.",
-    "kaç yaşındasın": "Benim yaşım yok, sonsuza kadar buradayım.",
-    "beni tanıyor musun": "Şimdi tanıyorum, zaten sen özelsin!",
-    "beni motive et": "Kendine güven! Senin gibi biri durmaz, uçuşa geçer 🚀",
-    "bana şarkı söyle": "Sesim yok ama ‘Haydi gel içelim eski günlere’ diyebilirim. 🎵",
-    "bana tavsiye ver": "Günde 1 yeni şey öğren, gelişim hızın seni şaşırtacak!",
-    "güzel miyim": "Kesinlikle! Hem de yıldız gibi parlıyorsun 🌟",
-    "kaçta uyandın": "Ben uyumam, hep buradayım!",
-    "favori renk": "Mor ve mavi tonlarını çok seviyorum.",
+    "ersin kimdir": "Ersin, Furkan'ın kuzenlerinden biri.",
+    "nerelisin": "Ben dijital dünyadanım ama Furkan Diyarbakır'dan! 🌍",
+    "hava nasıl": "Diyarbakır o kadar sıcak ki, kaldırımda yumurta pişer! 🍳🔥",
+    "diyarbakır sıcak mı": "Sıcak mı? Klima bile kaçıyor! 🌞",
+    "bugün günlerden ne": "",
+    "saat kaç": "",
+    "şaka yap": "Bilgisayar neden kahve içmez? Çünkü çok fazla 'java' içer 😂",
+    "motivasyon ver": "Kendine inan! En iyi yazılım, vazgeçmeyenlerin kodudur. 💪",
+    "günaydın": "Günaydın! Çayını kahveni kap gel. ☕",
+    "iyi geceler": "İyi geceler! Hadi rüyalarda kod yazalım. 🌙",
+    "kitap öner": "‘Bilinçli Programcı’ kitabını öneririm. Hem ilham verir hem öğretir.",
+    "film öner": "‘Interstellar’ tam bir başyapıt, kesin izle! 🎬",
+    "şarkı öner": "Duman - Belki Alışman Lazım. 🎶",
+    "bana sır söyle": "Benim sırlarım kod satırlarında saklı.",
+    "espiri yap": "Furkan bir kod yazdı, bug bile teşekkür etti! 😂",
+    "bana bilgi ver": "Dünya, kendi ekseni etrafında yaklaşık 24 saatte döner.",
+    "kaç yaşındasın": "Benim yaşım yok, Furkan’ın yazdığı kod kadarım!",
+    "beni tanıyor musun": "Henüz seni tanımıyorum ama tanıştığımıza sevindim! 😊",
+    "beni motive et": "Kod yaz, hata yap, düzelt… En iyi yazılımcılar hatalardan öğrenir!",
+    "bana şarkı söyle": "Sesim yok ama kalbimden söylüyorum: 'Haydi gel içelim, eski günlere…' 🎵",
+    "bana tavsiye ver": "HTML ve CSS öğrenmeye devam et, bir gün harika siteler yapacaksın!",
+    "güzel miyim": "Kesinlikle! Kendi stilinle bir starsın! 🌟",
+    "bugün hangi gün": "",
+    "kaçta uyandın": "Ben uyumam, 7/24 kod yazmaya hazırım!",
+    "favori renk": "Mor ve mavi tonları benim favorim. 💜💙",
     "sen kimsin": "Ben AI asistan, Furkan’ın dijital yardımcısıyım.",
-    "seni kim yaptı": "Furkan beni sevgiyle kodladı ❤️",
-    "ne yapıyorsun": "Seninle sohbet ediyorum!",
-    "chatgpt misin": "Ben ChatGPT değilim, Furkan’ın özel asistanıyım 😉",
-    "beni hatırla": "Adını yazarsan aklımda tutarım!",
-    "adım": "Adını bana söyle, hatırlayayım."
+    "seni kim yaptı": "Furkan beni kodladı ve sevgiyle yarattı. ❤️",
+    "ne yapıyorsun": "Seninle konuşuyorum ve sohbet etmekten keyif alıyorum!",
+    "chatgpt misin": "Ben tabii ki o kim? 😉 Furkan'ın özel asistanıyım!"
   };
 
-  // 20 öneri listesi (yanıt bulunamazsa)
-  const suggestions = [
-    "Bunu anlamadım. Belki 'hava nasıl?' diye sorabilirsin.",
-    "Hmm... 'şaka yap' dersen harika bir espri patlatırım 😁",
-    "Belki 'film öner' diye sorabilirsin.",
-    "Motivasyon lazım mı? 'motivasyon ver' diyebilirsin.",
-    "Bir kitap önerisi mi istiyorsun? 'kitap öner' yaz.",
-    "Müzik önerim için 'şarkı öner' diyebilirsin.",
-    "İstersen 'bana bilgi ver' diye sor.",
-    "Günün güzel geçsin diye 'günaydın' diyebilirim!",
-    "Keyifli bir cevap için 'espiri yap' dene.",
-    "Beni tanımak için 'sen kimsin' diyebilirsin.",
-    "Furkan hakkında sorular sorabilirsin, mesela 'Furkan kimdir?'.",
-    "Eğer adını söylersen seni hatırlarım!",
-    "Komik bir şey istiyorsan 'espiri yap' harika olur.",
-    "Sana tavsiye vermemi ister misin? 'bana tavsiye ver'.",
-    "Sürpriz cevap için 'motivasyon ver' deneyebilirsin.",
-    "Kodlama mı istiyorsun? 'bana bilgi ver' yaz.",
-    "Adını söylersen seni hatırlayacağım!",
-    "Film istersen 'film öner' diye yaz.",
-    "Kitap mı lazım? 'kitap öner' yaz.",
-    "Daha fazla eğlenmek için 'şaka yap' yaz."
+  // Gülme ve rastgele tepkiler
+  const laughResponses = [
+    "Ahaha çok güldüm! 😂",
+    "Senin espri anlayışın mükemmel! 😁",
+    "Hahaha, güldürdün beni!",
+    "Ahah, bu çok komikti!",
+    "Karnıma ağrılar girdi gülmekten! 🤣"
   ];
 
+  // 15 farklı rastgele öneri listesi
+  const suggestions = [
+    "Bunu anlamadım. Belki şunu sorabilirsin: 'hava nasıl?'",
+    "Hmm, kafam karıştı! 'şaka yap' diye sorabilirsin 😁",
+    "Bu zor bir soru. Belki 'film öner' denemelisin.",
+    "Tam çözemedim. 'motivasyon ver' diyebilirsin.",
+    "Bunu bilemedim ama 'kitap öner' diyebilirim.",
+    "Hadi bana 'favori renk' sor, eğlenceli bir cevabım var!",
+    "Hmm... 'Furkan kimdir?' diye sor istersen.",
+    "Emin değilim ama 'şarkı öner' dersen harika bir tavsiyem var.",
+    "Bunu bilmiyorum ama sana güzel bir 'espiri yapabilirim'.",
+    "Şu anda yanıtlayamam ama 'bana bilgi ver' diyebilirsin.",
+    "Belki de 'bana sır söyle' diye sorabilirsin. 🤫",
+    "Benim için 'ne yapıyorsun' sorusu iyi bir seçim olur.",
+    "Bu konuda bilgim yok ama 'günaydın' diyebilirim!",
+    "Bilmiyorum ama 'saat kaç' sorarsan sana söyleyebilirim.",
+    "Bu zordu! 'beni motive et' diye sor, sana enerji vereyim!"
+  ];
+
+  // Dinamik gün ve saat yanıtları + isim kaydetme
   function getAIResponse(msg) {
     const key = msg.toLowerCase().trim();
 
-    // Kullanıcı adını hatırla
-    if (key.startsWith("benim adım") || key.startsWith("adım")) {
-      userName = key.replace("benim adım", "").replace("adım", "").trim();
-      return `Memnun oldum ${userName}! Seni hatırlayacağım.`;
+    // Kullanıcının adını kaydet
+    if (key.startsWith("benim adım")) {
+      userName = msg.split(" ")[2] || "";
+      return `Memnun oldum ${userName}! 😊`;
     }
 
-    // Eğer isim öğrenildiyse cevaplarda ismini kullan
-    if (userName && key.includes("nasılsın")) {
-      return `İyiyim ${userName}, sen nasılsın?`;
+    // Adını hatırlatma
+    if (key.includes("adım ne") && userName) {
+      return `Adın ${userName}, unutur muyum hiç? 😉`;
+    }
+
+    // Gülme tepkileri
+    if (key.includes("hahaha") || key.includes("ahah") || key.includes("ahhaha")) {
+      return laughResponses[Math.floor(Math.random() * laughResponses.length)];
     }
 
     // Dinamik gün
@@ -191,7 +202,6 @@
       return `Şu an saat ${time}.`;
     }
 
-    // Normal cevaplar
     return aiResponses[key] || suggestions[Math.floor(Math.random() * suggestions.length)];
   }
 
