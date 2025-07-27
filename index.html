@@ -136,19 +136,27 @@
     "sen kimsin": "Ben AI asistan, Furkan’ın dijital yardımcısıyım.",
     "seni kim yaptı": "Furkan beni kodladı ve sevgiyle yarattı. ❤️",
     "ne yapıyorsun": "Seninle konuşuyorum ve sohbet etmekten keyif alıyorum!",
-
-    // Yeni eklenen eğlenceli cevaplar
-    "chatgpt misin": "Ben tabii ki o kim? 😉 Furkan'ın özel asistanıyım!",
-    "sen mi iyisin chatgpt mi": "Tabii ki ben! Çünkü ben hem eğlenceli hem espriliyim 😁",
-    "sen siri misin": "Siri? Yok ya, ben daha havalıyım! 😎",
-    "sen alexa mısın": "Alexa kimmiş, ben buradayım!",
-    "bana öneri ver": "Her gün 1 yeni şey öğren, böylece zihnin hep genç kalır!",
-    "bana komik bir şey söyle": "Furkan bir site yaptı, internet bile hızlandı! 😂",
-    "fıkra anlat": "Temel bilgisayara bakmış: ‘Bu fare niye tıklamıyor, yoksa korktu mu?’ 😂",
-    "bana yazılım öner": "HTML, CSS ve JavaScript üçlüsünü mutlaka öğren!",
-    "bana tavsiye": "Her zaman meraklı ol ve sormaktan vazgeçme!",
-    "hangi dili biliyorsun": "Türkçe ve biraz İngilizce biliyorum!"
+    "chatgpt misin": "Ben tabii ki o kim? 😉 Furkan'ın özel asistanıyım!"
   };
+
+  // 15 farklı rastgele öneri listesi
+  const suggestions = [
+    "Bunu anlamadım. Belki şunu sorabilirsin: 'hava nasıl?'",
+    "Hmm, kafam karıştı! 'şaka yap' diye sorabilirsin 😁",
+    "Bu zor bir soru. Belki 'film öner' denemelisin.",
+    "Tam çözemedim. 'motivasyon ver' diyebilirsin.",
+    "Bunu bilemedim ama 'kitap öner' diyebilirim.",
+    "Hadi bana 'favori renk' sor, eğlenceli bir cevabım var!",
+    "Hmm... 'Furkan kimdir?' diye sor istersen.",
+    "Emin değilim ama 'şarkı öner' dersen harika bir tavsiyem var.",
+    "Bunu bilmiyorum ama sana güzel bir 'espiri yapabilirim'.",
+    "Şu anda yanıtlayamam ama 'bana bilgi ver' diyebilirsin.",
+    "Belki de 'bana sır söyle' diye sorabilirsin. 🤫",
+    "Benim için 'ne yapıyorsun' sorusu iyi bir seçim olur.",
+    "Bu konuda bilgim yok ama 'günaydın' diyebilirim!",
+    "Bilmiyorum ama 'saat kaç' sorarsan sana söyleyebilirim.",
+    "Bu zordu! 'beni motive et' diye sor, sana enerji vereyim!"
+  ];
 
   // Dinamik gün ve saat yanıtları
   function getAIResponse(msg) {
@@ -167,7 +175,8 @@
       return `Şu an saat ${time}.`;
     }
 
-    return aiResponses[key] || "Bunu anlayamadım, başka bir şey sor!";
+    // Yanıt bulamazsa rastgele öneri döner
+    return aiResponses[key] || suggestions[Math.floor(Math.random() * suggestions.length)];
   }
 
   function sendMessage() {
@@ -197,6 +206,9 @@
     box.style.flexDirection = "column";
   }
 </script>
+
+  
+
 
   
 
