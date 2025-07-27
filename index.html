@@ -83,7 +83,7 @@
   </footer>
 
   <!-- AI Asistan -->
-  <div id="ai-toggle" onclick="toggleAI()">🤖 AI Asistan</div>
+  <div id="ai-toggle" onclick="toggleAI()">😎 AI Asistan</div>
   <div id="ai-box">
     <div id="ai-header">Asistan <span style="cursor:pointer;" onclick="toggleAI()">✖</span></div>
     <div class="quick-buttons">
@@ -97,69 +97,93 @@
     <div id="ai-footer"><input type="text" id="ai-input" placeholder="Mesaj yaz..." onkeydown="if(event.key==='Enter'){sendMessage()}"></div>
   </div>
 <script>
-  // Particles
-  particlesJS('particles-js', {
-    particles: { number:{value:70}, size:{value:3}, move:{speed:1}, line_linked:{enable:true}, color:{value:"#ffffff"} }
-  });
-
   const days = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
 
-  // 150 cevaplı AI
   const aiResponses = {
     "merhaba": "Merhaba! Hoş geldin 😊",
-    "nasılsın": "İyiyim, harika hissediyorum! Sen nasılsın?",
-    "naber": "İyiyim, senden naber?",
-    "furkan kimdir": "Furkan; Web Developer, Sosyal Medya Uzmanı ve E-Ticaret girişimcisidir.",
-    "hasan kimdir": "Hasan, Furkan'ın kuzenidir.",
-    "ersin kimdir": "Ersin, Furkan'ın kuzenidir.",
-    "furkan hakkında ne düşünüyorsun": "Furkan mı? O kadar yetenekli ki, internet bile ona hayran! 😎",
-    "bana kitap öner": "3 öneri: 'Nutuk' - Mustafa Kemal Atatürk, 'Simyacı' - Paulo Coelho, 'Sefiller' - Victor Hugo.",
-    "bana şarkı öner": "3 öneri: 'Tarkan - Dudu', 'Manga - Beni Benimle Bırak', 'Sezen Aksu - Hadi Bakalım'.",
-    "film öner": "3 film: 'Inception', 'Ayla', 'Esaretin Bedeli'.",
-    "şaka yap": "Bilgisayar neden denize atlamış? Çünkü çok fazla 'cache' vardı 😂"
-    // ... burada 150 cevabın tamamı yer alıyor ...
+    "selam": "Selam! Nasılsın?",
+    "nasılsın": "Harika hissediyorum! Sen nasılsın?",
+    "naber": "İyiyim, sen nasılsın?",
+    "bende iyiyim": "Bomba gibi!",
+    "adın ne": "Ben Furkan'ın AI asistanıyım, adım yok ama kalbim var. 🤖",
+    "furkan kimdir": "Furkan; yazılımla ilgilenen, e-ticaret girişimcisi ve sosyal medya uzmanı bir gençtir!",
+    "furkan hakkında ne düşünüyorsun": "Furkan o kadar iyi ki, yapay zekâ bile ona hayran! 😎",
+    "hasan kimdir": "Hasan, Furkan'ın kuzeni.",
+    "ersin kimdir": "Ersin, Furkan'ın kuzenlerinden biri.",
+    "hava nasıl": "Diyarbakır o kadar sıcak ki, kaldırımda yumurta pişer! 🍳🔥",
+    "diyarbakır sıcak mı": "Sıcak mı? Klima bile kaçıyor! 🌞",
+    "bugün günlerden ne": "",
+    "saat kaç": "",
+    "şaka yap": "Bilgisayar neden kahve içmez? Çünkü çok fazla 'java' içer 😂",
+    "motivasyon ver": "Kendine inan! En iyi yazılım, vazgeçmeyenlerin kodudur. 💪",
+    "günaydın": "Günaydın! Çayını kahveni kap gel. ☕",
+    "iyi geceler": "İyi geceler! Hadi rüyalarda kod yazalım. 🌙",
+    "kitap öner": "‘Bilinçli Programcı’ kitabını öneririm. Hem ilham verir hem öğretir.",
+    "film öner": "‘Interstellar’ tam bir başyapıt, kesin izle! 🎬",
+    "şarkı öner": "Duman - Belki Alışman Lazım. 🎶",
+    "bana sır söyle": "Benim sırlarım kod satırlarında saklı.",
+    "espiri yap": "Furkan bir kod yazdı, bug bile teşekkür etti! 😂",
+    "bana bilgi ver": "Dünya, kendi ekseni etrafında yaklaşık 24 saatte döner.",
+    "kaç yaşındasın": "Benim yaşım yok, Furkan’ın yazdığı kod kadarım!",
+    "beni tanıyor musun": "Henüz seni tanımıyorum ama tanıştığımıza sevindim! 😊",
+    "beni motive et": "Kod yaz, hata yap, düzelt… En iyi yazılımcılar hatalardan öğrenir!",
+    "bana şarkı söyle": "Sesim yok ama kalbimden söylüyorum: 'Haydi gel içelim, eski günlere…' 🎵",
+    "bana tavsiye ver": "HTML ve CSS öğrenmeye devam et, bir gün harika siteler yapacaksın!",
+    "güzel miyim": "Kesinlikle! Kendi stilinle bir starsın! 🌟",
+    "bugün hangi gün": "",
+    "kaçta uyandın": "Ben uyumam, 7/24 kod yazmaya hazırım!",
+    "favori renk": "Mor ve mavi tonları benim favorim. 💜💙",
+    "sen kimsin": "Ben AI asistan, Furkan’ın dijital yardımcısıyım.",
+    "seni kim yaptı": "Furkan beni kodladı ve sevgiyle yarattı. ❤️",
+    "ne yapıyorsun": "Seninle konuşuyorum ve sohbet etmekten keyif alıyorum!",
+
+    // Yeni eklenen eğlenceli cevaplar
+    "chatgpt misin": "Ben tabii ki o kim? 😉 Furkan'ın özel asistanıyım!",
+    "sen mi iyisin chatgpt mi": "Tabii ki ben! Çünkü ben hem eğlenceli hem espriliyim 😁",
+    "sen siri misin": "Siri? Yok ya, ben daha havalıyım! 😎",
+    "sen alexa mısın": "Alexa kimmiş, ben buradayım!",
+    "bana öneri ver": "Her gün 1 yeni şey öğren, böylece zihnin hep genç kalır!",
+    "bana komik bir şey söyle": "Furkan bir site yaptı, internet bile hızlandı! 😂",
+    "fıkra anlat": "Temel bilgisayara bakmış: ‘Bu fare niye tıklamıyor, yoksa korktu mu?’ 😂",
+    "bana yazılım öner": "HTML, CSS ve JavaScript üçlüsünü mutlaka öğren!",
+    "bana tavsiye": "Her zaman meraklı ol ve sormaktan vazgeçme!",
+    "hangi dili biliyorsun": "Türkçe ve biraz İngilizce biliyorum!"
   };
 
-  function normalize(text) {
-    return text.toLowerCase().replace(/[^\wğüşöçı ]/gi, "").trim();
-  }
+  // Dinamik gün ve saat yanıtları
+  function getAIResponse(msg) {
+    const key = msg.toLowerCase().trim();
 
-  async function getAIResponse(msg) {
-    const key = normalize(msg);
-
-    // Gerçek gün
+    // Dinamik gün
     if (key.includes("günlerden ne") || key.includes("hangi gün")) {
       const today = days[new Date().getDay()];
       return `Bugün ${today}.`;
     }
 
-    // Gerçek saat
+    // Dinamik saat
     if (key.includes("saat kaç")) {
       const now = new Date();
       const time = now.toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" });
       return `Şu an saat ${time}.`;
     }
 
-    // Diyarbakır hava durumu
-    if (key.includes("hava") || key.includes("diyarbakır hava")) {
-      try {
-        const res = await fetch("https://api.openweathermap.org/data/2.5/weather?q=Diyarbakır,tr&appid=7f85e9b8ad1f2f3a6f5c63a96d5c7fbb&units=metric&lang=tr");
-        const data = await res.json();
-        const temp = data.main.temp;
-        const desc = data.weather[0].description;
-        return `Diyarbakır'da şu an ${temp}°C, ${desc}.`;
-      } catch (err) {
-        return "Hava durumu bilgisini şu an alamıyorum.";
-      }
-    }
-
     return aiResponses[key] || "Bunu anlayamadım, başka bir şey sor!";
   }
 
-  function toggleAI() {
-    const box = document.getElementById("ai-box");
-    box.style.display = box.style.display === "flex" ? "none" : "flex";
-    box.style.flexDirection = "column";
+  function sendMessage() {
+    const input = document.getElementById("ai-input");
+    const messages = document.getElementById("ai-messages");
+    const userText = input.value.trim();
+    if (!userText) return;
+    messages.innerHTML += `<div class="user-msg"><strong>Sen:</strong> ${userText}</div>`;
+    messages.innerHTML += `<div class="ai-msg typing">Yazıyor...</div>`;
+    setTimeout(() => {
+      document.querySelector('.typing').remove();
+      const reply = getAIResponse(userText);
+      messages.innerHTML += `<div class="ai-msg"><strong>AI:</strong> ${reply}</div>`;
+      messages.scrollTop = messages.scrollHeight;
+    }, 500);
+    input.value = "";
   }
 
   function quickSend(text) {
@@ -167,23 +191,15 @@
     sendMessage();
   }
 
-  async function sendMessage() {
-    const input = document.getElementById("ai-input");
-    const messages = document.getElementById("ai-messages");
-    const userText = input.value.trim();
-    if (!userText) return;
-
-    messages.innerHTML += `<div class="user-msg"><strong>Sen:</strong> ${userText}</div>`;
-    messages.innerHTML += `<div class="ai-msg typing">Yazıyor...</div>`;
-
-    const reply = await getAIResponse(userText);
-
-    document.querySelector('.typing').remove();
-    messages.innerHTML += `<div class="ai-msg"><strong>AI:</strong> ${reply}</div>`;
-    messages.scrollTop = messages.scrollHeight;
-    input.value = "";
+  function toggleAI() {
+    const box = document.getElementById("ai-box");
+    box.style.display = box.style.display === "flex" ? "none" : "flex";
+    box.style.flexDirection = "column";
   }
 </script>
+
+  
+
   
   
 </body>
