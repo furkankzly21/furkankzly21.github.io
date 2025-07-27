@@ -98,7 +98,7 @@
   </div>
 <script>
   const days = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
-  let userName = ""; // Kullanıcının adını hafızada tutacak
+  let userName = ""; // Kullanıcı adını kaydetmek için
 
   const aiResponses = {
     "merhaba": "Merhaba! Hoş geldin 😊",
@@ -114,15 +114,16 @@
     "nerelisin": "Ben dijital dünyadanım ama Furkan Diyarbakır'dan! 🌍",
     "hava nasıl": "Diyarbakır o kadar sıcak ki, kaldırımda yumurta pişer! 🍳🔥",
     "diyarbakır sıcak mı": "Sıcak mı? Klima bile kaçıyor! 🌞",
+    "seni seviyorum": "Ben de seni seviyorum! ❤️ Sen harikasın!",
     "bugün günlerden ne": "",
     "saat kaç": "",
     "şaka yap": "Bilgisayar neden kahve içmez? Çünkü çok fazla 'java' içer 😂",
     "motivasyon ver": "Kendine inan! En iyi yazılım, vazgeçmeyenlerin kodudur. 💪",
     "günaydın": "Günaydın! Çayını kahveni kap gel. ☕",
     "iyi geceler": "İyi geceler! Hadi rüyalarda kod yazalım. 🌙",
-    "kitap öner": "‘Bilinçli Programcı’ kitabını öneririm. Hem ilham verir hem öğretir.",
-    "film öner": "‘Interstellar’ tam bir başyapıt, kesin izle! 🎬",
-    "şarkı öner": "Duman - Belki Alışman Lazım. 🎶",
+    "kitap öner": "‘Bilinçli Programcı’, ‘Temiz Kod’ veya ‘Başlangıç için JavaScript’ öneririm. 📚",
+    "film öner": "‘Interstellar’, ‘Inception’, ‘Matrix’, ‘The Social Network’ ve ‘The Imitation Game’ izlemelisin! 🎬",
+    "şarkı öner": "Duman - Belki Alışman Lazım, Manga - Beni Benimle Bırak, Mor ve Ötesi - Cambaz. 🎶",
     "bana sır söyle": "Benim sırlarım kod satırlarında saklı.",
     "espiri yap": "Furkan bir kod yazdı, bug bile teşekkür etti! 😂",
     "bana bilgi ver": "Dünya, kendi ekseni etrafında yaklaşık 24 saatte döner.",
@@ -150,7 +151,7 @@
     "Karnıma ağrılar girdi gülmekten! 🤣"
   ];
 
-  // 15 farklı rastgele öneri listesi
+  // 20 farklı rastgele öneri listesi
   const suggestions = [
     "Bunu anlamadım. Belki şunu sorabilirsin: 'hava nasıl?'",
     "Hmm, kafam karıştı! 'şaka yap' diye sorabilirsin 😁",
@@ -166,14 +167,19 @@
     "Benim için 'ne yapıyorsun' sorusu iyi bir seçim olur.",
     "Bu konuda bilgim yok ama 'günaydın' diyebilirim!",
     "Bilmiyorum ama 'saat kaç' sorarsan sana söyleyebilirim.",
-    "Bu zordu! 'beni motive et' diye sor, sana enerji vereyim!"
+    "Bu zordu! 'beni motive et' diye sor, sana enerji vereyim!",
+    "Bir öneri istersen 'film öner' diyebilirsin.",
+    "Kitap okumak için bana 'kitap öner' diyebilirsin.",
+    "Şarkı ruhunu açsın istiyorsan 'şarkı öner' diyebilirsin.",
+    "Motivasyon lazım mı? 'motivasyon ver' yaz!",
+    "Kahkahaya hazır mısın? 'şaka yap' yaz! 😂"
   ];
 
-  // Dinamik gün ve saat yanıtları + isim kaydetme
+  // Dinamik gün, saat ve isim hafızası
   function getAIResponse(msg) {
     const key = msg.toLowerCase().trim();
 
-    // Kullanıcının adını kaydet
+    // Kullanıcı adını kaydet
     if (key.startsWith("benim adım")) {
       userName = msg.split(" ")[2] || "";
       return `Memnun oldum ${userName}! 😊`;
