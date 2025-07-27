@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Furkan - Portföy</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <style>
-    body { margin:0; background:#0a0a0a; color:#f5f5f5; font-family:'Inter',sans-serif; scroll-behavior:smooth;}
-    .gradient-text { background:linear-gradient(90deg,#4f46e5,#a855f7,#06b6d4); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
-    section { padding:100px 20px; position:relative; }
-    #particles-js { position:absolute; width:100%; height:100%; z-index:-1; }
-    footer { text-align:center; padding:20px; background:#111; color:#aaa; }
-
-    /* AI Chat UI */
-    #ai-toggle { position:fixed; bottom:20px; right:20px; background:linear-gradient(90deg,#4f46e5,#a855f7); color:#fff; padding:10px 20px; border-radius:25px; cursor:pointer; box-shadow:0 0 10px rgba(0,0,0,0.4);}
-    #ai-box { position:fixed; bottom:80px; right:20px; width:350px; background:#1a1a1a; border-radius:10px; border:1px solid #333; display:none; flex-direction:column; }
-    #ai-header { padding:10px; background:linear-gradient(90deg,#4f46e5,#a855f7); color:#fff; font-weight:bold; display:flex; justify-content:space-between; border-radius:10px 10px 0 0;}
-    #ai-messages { padding:10px; height:300px; overflow-y:auto; font-size:14px; display:flex; flex-direction:column; gap:8px;}
-    .user-msg, .ai-msg { max-width:80%; padding:8px 12px; border-radius:15px; line-height:1.4; display:inline-block;}
-    .user-msg { background:#4f46e5; color:#fff; align-self:flex-end; border-bottom-right-radius:0; }
-    .ai-msg { background:#333; color:#fff; align-self:flex-start; border-bottom-left-radius:0; }
-    .typing { font-style:italic; color:#999; }
-    #ai-footer { padding:10px; border-top:1px solid #333;}
-    #ai-input { width:100%; padding:8px; border:none; border-radius:6px; background:#333; color:#fff;}
-    .quick-buttons { display:flex; flex-wrap:wrap; gap:5px; padding:5px 10px;}
-    .quick-buttons button { padding:4px 8px; background:#4f46e5; border:none; border-radius:4px; color:#fff; cursor:pointer; font-size:12px;}
-    #sound-toggle { background:#333; color:#fff; border:none; border-radius:50%; width:28px; height:28px; cursor:pointer; }
+    body { margin: 0; background: #0a0a0a; color: #f5f5f5; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+    .gradient-text { background: linear-gradient(90deg, #4f46e5, #a855f7, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    section { padding: 100px 20px; }
+    #particles-js { position: absolute; width: 100%; height: 100%; z-index: -1; }
+    .neon-box { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 0 15px rgba(168, 85, 247, 0.6); border-radius: 12px; transition: transform 0.3s, box-shadow 0.3s; }
+    .neon-box:hover { transform: translateY(-6px) scale(1.05); box-shadow: 0 0 25px rgba(168, 85, 247, 0.9); }
+    .typewriter { display: inline-block; overflow: hidden; white-space: nowrap; border-right: 2px solid #fff; animation: typing 3.5s steps(30) infinite, blink 0.7s infinite; }
+    @keyframes typing { 0% { width: 0; } 50% { width: 100%; } 100% { width: 0; } }
+    @keyframes blink { 50% { border-color: transparent; } }
+    footer { text-align: center; padding: 20px; background: #111; color: #aaa; }
+    /* AI Asistan */
+    #ai-toggle { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(90deg, #4f46e5, #a855f7); color: #fff; padding: 10px 20px; border-radius: 25px; cursor: pointer; }
+    #ai-box { position: fixed; bottom: 80px; right: 20px; width: 340px; background: #1a1a1a; border-radius: 10px; border: 1px solid #333; display: none; flex-direction: column; }
+    #ai-header { padding: 10px; background: linear-gradient(90deg, #4f46e5, #a855f7); color: #fff; font-weight: bold; display: flex; justify-content: space-between; }
+    #ai-messages { padding: 10px; height: 260px; overflow-y: auto; font-size: 14px; }
+    .user-msg { text-align: right; color: #93c5fd; margin: 5px 0; }
+    .ai-msg { text-align: left; color: #a7f3d0; margin: 5px 0; }
+    .typing { font-style: italic; color: #999; }
+    #ai-footer { padding: 10px; border-top: 1px solid #333; }
+    #ai-input { width: 100%; padding: 8px; border: none; border-radius: 6px; background: #333; color: #fff; }
+    .quick-buttons { display: flex; flex-wrap: wrap; gap: 5px; padding: 5px 10px; }
+    .quick-buttons button { padding: 4px 8px; background: #4f46e5; border: none; border-radius: 4px; color: #fff; cursor: pointer; font-size: 12px; }
   </style>
 </head>
 <body>
+
   <!-- HERO -->
   <section class="text-center min-h-screen flex flex-col justify-center items-center relative">
     <div id="particles-js"></div>
     <h1 class="text-6xl font-extrabold mb-4 gradient-text">Merhaba, ben Furkan</h1>
-    <p class="text-xl mb-6">Web Developer • Sosyal Medya Uzmanı • E-Ticaret Girişimcisi</p>
+    <p class="text-xl mb-6 typewriter">Web Developer • Sosyal Medya Uzmanı • E-Ticaret Girişimcisi</p>
     <div class="flex justify-center gap-4 text-2xl">
       <a href="https://www.instagram.com/muhammed_furkann1" target="_blank" class="text-pink-400"><i class="fab fa-instagram"></i></a>
       <a href="mailto:furkan21@gmail.com" class="text-blue-400"><i class="fas fa-envelope"></i></a>
@@ -57,10 +60,10 @@
   <section id="skills" class="bg-black text-center">
     <h2 class="text-4xl font-bold mb-8 gradient-text">Yeteneklerim</h2>
     <div class="max-w-5xl mx-auto grid sm:grid-cols-2 gap-6">
-      <div class="p-6 bg-zinc-800 rounded-lg shadow"><i class="fab fa-html5 text-4xl text-orange-400"></i><h3 class="mt-2 text-xl font-semibold">HTML</h3></div>
-      <div class="p-6 bg-zinc-800 rounded-lg shadow"><i class="fab fa-css3-alt text-4xl text-blue-400"></i><h3 class="mt-2 text-xl font-semibold">CSS</h3></div>
-      <div class="p-6 bg-zinc-800 rounded-lg shadow"><i class="fab fa-instagram text-4xl text-pink-400"></i><h3 class="mt-2 text-xl font-semibold">Sosyal Medya</h3></div>
-      <div class="p-6 bg-zinc-800 rounded-lg shadow"><i class="fas fa-store text-4xl text-green-400"></i><h3 class="mt-2 text-xl font-semibold">E-Ticaret</h3></div>
+      <div class="p-6 neon-box"><i class="fab fa-html5 text-4xl text-orange-400"></i><h3 class="mt-2 text-xl font-semibold">HTML</h3></div>
+      <div class="p-6 neon-box"><i class="fab fa-css3-alt text-4xl text-blue-400"></i><h3 class="mt-2 text-xl font-semibold">CSS</h3></div>
+      <div class="p-6 neon-box"><i class="fab fa-instagram text-4xl text-pink-400"></i><h3 class="mt-2 text-xl font-semibold">Sosyal Medya</h3></div>
+      <div class="p-6 neon-box"><i class="fas fa-store text-4xl text-green-400"></i><h3 class="mt-2 text-xl font-semibold">E-Ticaret</h3></div>
     </div>
   </section>
 
@@ -74,146 +77,142 @@
     </div>
   </section>
 
-  <footer>© 2025 Furkan. Tüm hakları saklıdır.</footer>
+  <!-- Footer -->
+  <footer>
+    © 2025 Furkan. Tüm hakları saklıdır.
+  </footer>
 
   <!-- AI Asistan -->
-  <div id="ai-toggle" onclick="toggleAI()">🤖 AI Asistan</div>
+  <div id="ai-toggle" onclick="toggleAI()">😎 AI Asistan</div>
   <div id="ai-box">
-    <div id="ai-header">
-      Asistan
-      <button id="sound-toggle" onclick="toggleSound()" title="Sesi Aç/Kapat">🔊</button>
-      <span style="cursor:pointer;" onclick="toggleAI()">✖</span>
-    </div>
+    <div id="ai-header">Asistan <span style="cursor:pointer;" onclick="toggleAI()">✖</span></div>
     <div class="quick-buttons">
       <button onclick="quickSend('Merhaba')">Merhaba</button>
+      <button onclick="quickSend('Nasılsın')">Nasılsın</button>
       <button onclick="quickSend('Şaka yap')">Şaka</button>
-      <button onclick="quickSend('Film öner')">Film</button>
+      <button onclick="quickSend('Motivasyon ver')">Motivasyon</button>
+      <button onclick="quickSend('Bilgi ver')">Bilgi</button>
     </div>
     <div id="ai-messages"></div>
     <div id="ai-footer"><input type="text" id="ai-input" placeholder="Mesaj yaz..." onkeydown="if(event.key==='Enter'){sendMessage()}"></div>
   </div>
+<script>
+  const days = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
 
-  <!-- JS -->
-  <script>
-    // Particles
-    particlesJS('particles-js', {
-      particles:{number:{value:70}, size:{value:3}, move:{speed:1}, line_linked:{enable:true}, color:{value:"#ffffff"}}
-    });
+  const aiResponses = {
+    "merhaba": "Merhaba! Hoş geldin 😊",
+    "selam": "Selam! Nasılsın?",
+    "nasılsın": "Harika hissediyorum! Sen nasılsın?",
+    "naber": "İyiyim, sen nasılsın?",
+    "bende iyiyim": "Bomba gibi!",
+    "adın ne": "Ben Furkan'ın AI asistanıyım, adım yok ama kalbim var. 🤖",
+    "furkan kimdir": "Furkan; yazılımla ilgilenen, e-ticaret girişimcisi ve sosyal medya uzmanı bir gençtir!",
+    "furkan hakkında ne düşünüyorsun": "Furkan o kadar iyi ki, yapay zekâ bile ona hayran! 😎",
+    "hasan kimdir": "Hasan, Furkan'ın kuzeni.",
+    "ersin kimdir": "Ersin, Furkan'ın kuzenlerinden biri.",
+    "hava nasıl": "Diyarbakır o kadar sıcak ki, kaldırımda yumurta pişer! 🍳🔥",
+    "diyarbakır sıcak mı": "Sıcak mı? Klima bile kaçıyor! 🌞",
+    "bugün günlerden ne": "",
+    "saat kaç": "",
+    "şaka yap": "Bilgisayar neden kahve içmez? Çünkü çok fazla 'java' içer 😂",
+    "motivasyon ver": "Kendine inan! En iyi yazılım, vazgeçmeyenlerin kodudur. 💪",
+    "günaydın": "Günaydın! Çayını kahveni kap gel. ☕",
+    "iyi geceler": "İyi geceler! Hadi rüyalarda kod yazalım. 🌙",
+    "kitap öner": "‘Bilinçli Programcı’ kitabını öneririm. Hem ilham verir hem öğretir.",
+    "film öner": "‘Interstellar’ tam bir başyapıt, kesin izle! 🎬",
+    "şarkı öner": "Duman - Belki Alışman Lazım. 🎶",
+    "bana sır söyle": "Benim sırlarım kod satırlarında saklı.",
+    "espiri yap": "Furkan bir kod yazdı, bug bile teşekkür etti! 😂",
+    "bana bilgi ver": "Dünya, kendi ekseni etrafında yaklaşık 24 saatte döner.",
+    "kaç yaşındasın": "Benim yaşım yok, Furkan’ın yazdığı kod kadarım!",
+    "beni tanıyor musun": "Henüz seni tanımıyorum ama tanıştığımıza sevindim! 😊",
+    "beni motive et": "Kod yaz, hata yap, düzelt… En iyi yazılımcılar hatalardan öğrenir!",
+    "bana şarkı söyle": "Sesim yok ama kalbimden söylüyorum: 'Haydi gel içelim, eski günlere…' 🎵",
+    "bana tavsiye ver": "HTML ve CSS öğrenmeye devam et, bir gün harika siteler yapacaksın!",
+    "güzel miyim": "Kesinlikle! Kendi stilinle bir starsın! 🌟",
+    "bugün hangi gün": "",
+    "kaçta uyandın": "Ben uyumam, 7/24 kod yazmaya hazırım!",
+    "favori renk": "Mor ve mavi tonları benim favorim. 💜💙",
+    "sen kimsin": "Ben AI asistan, Furkan’ın dijital yardımcısıyım.",
+    "seni kim yaptı": "Furkan beni kodladı ve sevgiyle yarattı. ❤️",
+    "ne yapıyorsun": "Seninle konuşuyorum ve sohbet etmekten keyif alıyorum!",
+    "chatgpt misin": "Ben tabii ki o kim? 😉 Furkan'ın özel asistanıyım!"
+  };
 
-    // Ses efektleri
-    let soundOn = true;
-    const sendSound = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-message-pop-alert-2354.mp3");
-    const receiveSound = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-bell-notification-933.mp3");
+  // 15 farklı rastgele öneri listesi
+  const suggestions = [
+    "Bunu anlamadım. Belki şunu sorabilirsin: 'hava nasıl?'",
+    "Hmm, kafam karıştı! 'şaka yap' diye sorabilirsin 😁",
+    "Bu zor bir soru. Belki 'film öner' denemelisin.",
+    "Tam çözemedim. 'motivasyon ver' diyebilirsin.",
+    "Bunu bilemedim ama 'kitap öner' diyebilirim.",
+    "Hadi bana 'favori renk' sor, eğlenceli bir cevabım var!",
+    "Hmm... 'Furkan kimdir?' diye sor istersen.",
+    "Emin değilim ama 'şarkı öner' dersen harika bir tavsiyem var.",
+    "Bunu bilmiyorum ama sana güzel bir 'espiri yapabilirim'.",
+    "Şu anda yanıtlayamam ama 'bana bilgi ver' diyebilirsin.",
+    "Belki de 'bana sır söyle' diye sorabilirsin. 🤫",
+    "Benim için 'ne yapıyorsun' sorusu iyi bir seçim olur.",
+    "Bu konuda bilgim yok ama 'günaydın' diyebilirim!",
+    "Bilmiyorum ama 'saat kaç' sorarsan sana söyleyebilirim.",
+    "Bu zordu! 'beni motive et' diye sor, sana enerji vereyim!"
+  ];
 
-    function toggleSound() {
-      soundOn = !soundOn;
-      document.getElementById("sound-toggle").textContent = soundOn ? "🔊" : "🔇";
+  // Dinamik gün ve saat yanıtları
+  function getAIResponse(msg) {
+    const key = msg.toLowerCase().trim();
+
+    // Dinamik gün
+    if (key.includes("günlerden ne") || key.includes("hangi gün")) {
+      const today = days[new Date().getDay()];
+      return `Bugün ${today}.`;
     }
 
-    const days = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
-
-    // 200+ cevap seti (şakalar, öneriler, motivasyon vs.)
-    const jokes = [
-      "Bilgisayar neden denize atlamış? Çünkü çok fazla 'cache' vardı 😂",
-      "HTML neden ağlamış? Çünkü CSS onu çok süslemiş!",
-      "Java neden kahveye düşman? Çünkü çok 'Java' içer!",
-      "Furkan bir kod yazdı, hata bile ona teşekkür etti!",
-      "Bilgisayar neden diyet yapmış? Çünkü çok fazla 'cookies' yemiş!"
-      // +45 şaka
-    ];
-
-    const motivation = [
-      "Kendine inan! En iyi yazılım, vazgeçmeyenlerin kodudur. 💪",
-      "Hayallerini kodla, geleceğini inşa et!",
-      "Her hata seni başarıya yaklaştırır!",
-      "Bugün başla, yarın daha iyi ol!"
-      // +36 motivasyon
-    ];
-
-    const books = [
-      "Bilinçli Programcı – Andrew Hunt",
-      "Temiz Kod – Robert C. Martin",
-      "Yapay Zeka Devrimi – Kai-Fu Lee"
-      // +27 kitap
-    ];
-
-    const movies = [
-      "Interstellar 🎬",
-      "Inception 🎥",
-      "The Matrix",
-      "The Social Network"
-      // +26 film
-    ];
-
-    const songs = [
-      "Duman – Belki Alışman Lazım 🎶",
-      "Şebnem Ferah – Sil Baştan",
-      "Manga – Bir Kadın Çizeceksin"
-      // +27 şarkı
-    ];
-
-    const laughResponses = [
-      "Hahaha! Aynen öyle! 😆",
-      "LOL! Çok güldüm! 😂",
-      "Ahahah, harikasın!"
-    ];
-
-    const aiResponses = {
-      "merhaba":"Merhaba! Hoş geldin 😊",
-      "selam":"Selam! Nasılsın?",
-      "nasılsın":"Harika hissediyorum! Sen nasılsın?",
-      "şaka yap":()=> jokes[Math.floor(Math.random()*jokes.length)],
-      "motivasyon ver":()=> motivation[Math.floor(Math.random()*motivation.length)],
-      "kitap öner":()=> books[Math.floor(Math.random()*books.length)],
-      "film öner":()=> movies[Math.floor(Math.random()*movies.length)],
-      "şarkı öner":()=> songs[Math.floor(Math.random()*songs.length)],
-      "furkan kimdir":"Furkan; web developer, sosyal medya uzmanı ve e-ticaret girişimcisidir.",
-      "furkan hakkında ne düşünüyorsun":"Furkan o kadar iyi ki, yapay zekâ bile ona hayran! 😎",
-      "hasan kimdir":"Hasan, Furkan'ın kuzeni.",
-      "ersin kimdir":"Ersin, Furkan'ın kuzenlerinden biri."
-    };
-
-    const suggestions = [
-      "Bunu anlamadım, 'şaka yap' diyebilirsin.",
-      "Hmm, 'film öner' yazmayı dene.",
-      "İstersen 'motivasyon ver' diyebilirsin.",
-      "Bir şarkı tavsiyesi için 'şarkı öner' de!",
-      "Kitap önerisi istersen 'kitap öner' yaz."
-      // +15 öneri
-    ];
-
-    function getAIResponse(msg) {
-      const key = msg.toLowerCase().trim();
-      if (key.includes("gün")) return `Bugün ${days[new Date().getDay()]}.`;
-      if (key.includes("saat")) return `Şu an saat ${new Date().toLocaleTimeString("tr-TR",{hour:"2-digit",minute:"2-digit"})}`;
-      if (key.includes("haha") || key.includes("lol")) return laughResponses[Math.floor(Math.random()*laughResponses.length)];
-      return aiResponses[key] ? (typeof aiResponses[key]==="function" ? aiResponses[key]() : aiResponses[key]) : suggestions[Math.floor(Math.random()*suggestions.length)];
+    // Dinamik saat
+    if (key.includes("saat kaç")) {
+      const now = new Date();
+      const time = now.toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" });
+      return `Şu an saat ${time}.`;
     }
 
-    function sendMessage() {
-      const input = document.getElementById("ai-input");
-      const messages = document.getElementById("ai-messages");
-      const userText = input.value.trim();
-      if (!userText) return;
-      if (soundOn) sendSound.play();
-      messages.innerHTML += `<div class="user-msg">${userText}</div>`;
-      messages.innerHTML += `<div class="ai-msg typing">Yazıyor...</div>`;
-      setTimeout(() => {
-        document.querySelector(".typing").remove();
-        const reply = getAIResponse(userText);
-        messages.innerHTML += `<div class="ai-msg">${reply}</div>`;
-        messages.scrollTop = messages.scrollHeight;
-        if (soundOn) receiveSound.play();
-      }, 600);
-      input.value = "";
-    }
+    // Yanıt bulamazsa rastgele öneri döner
+    return aiResponses[key] || suggestions[Math.floor(Math.random() * suggestions.length)];
+  }
 
-    function quickSend(text) { document.getElementById("ai-input").value = text; sendMessage(); }
-    function toggleAI() {
-      const box = document.getElementById("ai-box");
-      box.style.display = box.style.display === "flex" ? "none" : "flex";
-      box.style.flexDirection = "column";
-    }
-  </script>
+  function sendMessage() {
+    const input = document.getElementById("ai-input");
+    const messages = document.getElementById("ai-messages");
+    const userText = input.value.trim();
+    if (!userText) return;
+    messages.innerHTML += `<div class="user-msg"><strong>Sen:</strong> ${userText}</div>`;
+    messages.innerHTML += `<div class="ai-msg typing">Yazıyor...</div>`;
+    setTimeout(() => {
+      document.querySelector('.typing').remove();
+      const reply = getAIResponse(userText);
+      messages.innerHTML += `<div class="ai-msg"><strong>AI:</strong> ${reply}</div>`;
+      messages.scrollTop = messages.scrollHeight;
+    }, 500);
+    input.value = "";
+  }
+
+  function quickSend(text) {
+    document.getElementById("ai-input").value = text;
+    sendMessage();
+  }
+
+  function toggleAI() {
+    const box = document.getElementById("ai-box");
+    box.style.display = box.style.display === "flex" ? "none" : "flex";
+    box.style.flexDirection = "column";
+  }
+</script>
+
+  
+
+
+  
+
+  
+  
 </body>
 </html>
