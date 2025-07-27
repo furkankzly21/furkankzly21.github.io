@@ -98,8 +98,41 @@
   </div>
 <script>
   const days = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
-  let userName = ""; // Kullanıcı adını kaydetmek için
 
+  // --- Film, şarkı ve kitap önerileri ---
+  const films = [
+    "Interstellar", "Inception", "The Matrix", "Forrest Gump", "The Dark Knight",
+    "Parasite", "Fight Club", "The Shawshank Redemption", "Gladiator", "Joker",
+    "Whiplash", "The Prestige", "Se7en", "Saving Private Ryan", "The Godfather",
+    "The Truman Show", "Good Will Hunting", "Pulp Fiction", "Avengers: Endgame", "Tenet",
+    "Oppenheimer", "A Beautiful Mind", "The Lion King", "Shutter Island", "Avatar",
+    "The Social Network", "Mad Max: Fury Road", "The Wolf of Wall Street", "Dune", "The Pianist"
+  ];
+
+  const songs = [
+    "Duman - Belki Alışman Lazım", "Manga - Beni Benimle Bırak", "Barış Manço - Gülpembe",
+    "Teoman - Renkli Rüyalar Oteli", "Mor ve Ötesi - Bir Derdim Var", "Sezen Aksu - Gülümse",
+    "Tarkan - Dudu", "Sagopa - 366.Gün", "Ceza - Suspus", "Sertab Erener - Zor Kadın",
+    "Haluk Levent - Elfida", "Cem Adrian - Ben Seni Çok Sevdim", "Gripin - Sen Gidiyorsun",
+    "Hayko Cepkin - Yalnız Kalsın", "Model - Değmesin Ellerimiz", "Berkay - İki Hece",
+    "Aleyna Tilki - Cevapsız Çınlama", "Edis - Arıyorum", "Ajda Pekkan - Yan",
+    "Funda Arar - Aşkın Masum Çocukları", "Mabel Matiz - Antidepresan", "Simge - Öpücem",
+    "Emre Aydın - Hoşçakal", "Sıla - Acısa da Öldürmez", "Zeynep Bastık - Uslanmıyor Bu",
+    "Kenan Doğulu - Aşk Oyunu", "Yalın - Ki Sen", "Nil Karaibrahimgil - Kanatlarım Var Ruhumda",
+    "Feridun Düzağaç - Alev Alev", "Göksel - Acıyor"
+  ];
+
+  const books = [
+    "Bilinçli Programcı - Andrew Hunt", "Sefiller - Victor Hugo", "Küçük Prens - Antoine de Saint-Exupéry",
+    "Suç ve Ceza - Dostoyevski", "Savaş ve Barış - Tolstoy", "Uçurtma Avcısı - Khaled Hosseini",
+    "1984 - George Orwell", "Hayvan Çiftliği - George Orwell", "İnce Memed - Yaşar Kemal",
+    "Tutunamayanlar - Oğuz Atay", "Saatleri Ayarlama Enstitüsü - Ahmet Hamdi Tanpınar",
+    "Kürk Mantolu Madonna - Sabahattin Ali", "Simyacı - Paulo Coelho", "Yeraltından Notlar - Dostoyevski",
+    "Puslu Kıtalar Atlası - İhsan Oktay Anar", "Beyaz Diş - Jack London", "Şeker Portakalı - José Mauro de Vasconcelos",
+    "İki Şehrin Hikayesi - Charles Dickens", "Martin Eden - Jack London", "Denizler Altında 20 Bin Fersah - Jules Verne"
+  ];
+
+  // --- Normal cevaplar ---
   const aiResponses = {
     "merhaba": "Merhaba! Hoş geldin 😊",
     "selam": "Selam! Nasılsın?",
@@ -111,19 +144,15 @@
     "furkan hakkında ne düşünüyorsun": "Furkan o kadar iyi ki, yapay zekâ bile ona hayran! 😎",
     "hasan kimdir": "Hasan, Furkan'ın kuzeni.",
     "ersin kimdir": "Ersin, Furkan'ın kuzenlerinden biri.",
-    "nerelisin": "Ben dijital dünyadanım ama Furkan Diyarbakır'dan! 🌍",
     "hava nasıl": "Diyarbakır o kadar sıcak ki, kaldırımda yumurta pişer! 🍳🔥",
     "diyarbakır sıcak mı": "Sıcak mı? Klima bile kaçıyor! 🌞",
-    "seni seviyorum": "Ben de seni seviyorum! ❤️ Sen harikasın!",
-    "bugün günlerden ne": "",
-    "saat kaç": "",
     "şaka yap": "Bilgisayar neden kahve içmez? Çünkü çok fazla 'java' içer 😂",
     "motivasyon ver": "Kendine inan! En iyi yazılım, vazgeçmeyenlerin kodudur. 💪",
     "günaydın": "Günaydın! Çayını kahveni kap gel. ☕",
     "iyi geceler": "İyi geceler! Hadi rüyalarda kod yazalım. 🌙",
-    "kitap öner": "‘Bilinçli Programcı’, ‘Temiz Kod’ veya ‘Başlangıç için JavaScript’ öneririm. 📚",
-    "film öner": "‘Interstellar’, ‘Inception’, ‘Matrix’, ‘The Social Network’ ve ‘The Imitation Game’ izlemelisin! 🎬",
-    "şarkı öner": "Duman - Belki Alışman Lazım, Manga - Beni Benimle Bırak, Mor ve Ötesi - Cambaz. 🎶",
+    "kitap öner": () => `Okuman gereken kitap: ${books[Math.floor(Math.random() * books.length)]}.`,
+    "film öner": () => `Bence izlemen gereken film: ${films[Math.floor(Math.random() * films.length)]}.`,
+    "şarkı öner": () => `Dinlemen gereken şarkı: ${songs[Math.floor(Math.random() * songs.length)]}.`,
     "bana sır söyle": "Benim sırlarım kod satırlarında saklı.",
     "espiri yap": "Furkan bir kod yazdı, bug bile teşekkür etti! 😂",
     "bana bilgi ver": "Dünya, kendi ekseni etrafında yaklaşık 24 saatte döner.",
@@ -133,30 +162,26 @@
     "bana şarkı söyle": "Sesim yok ama kalbimden söylüyorum: 'Haydi gel içelim, eski günlere…' 🎵",
     "bana tavsiye ver": "HTML ve CSS öğrenmeye devam et, bir gün harika siteler yapacaksın!",
     "güzel miyim": "Kesinlikle! Kendi stilinle bir starsın! 🌟",
-    "bugün hangi gün": "",
     "kaçta uyandın": "Ben uyumam, 7/24 kod yazmaya hazırım!",
     "favori renk": "Mor ve mavi tonları benim favorim. 💜💙",
     "sen kimsin": "Ben AI asistan, Furkan’ın dijital yardımcısıyım.",
     "seni kim yaptı": "Furkan beni kodladı ve sevgiyle yarattı. ❤️",
     "ne yapıyorsun": "Seninle konuşuyorum ve sohbet etmekten keyif alıyorum!",
-    "chatgpt misin": "Ben tabii ki o kim? 😉 Furkan'ın özel asistanıyım!"
+    "chatgpt misin": "Ben tabii ki o kim? 😉 Furkan'ın özel asistanıyım!",
+    "seni seviyorum": "Ben de seni seviyorum! ❤️",
+    "teşekkürler": "Ne demek, her zaman! 😊",
+    "sağ ol": "Her zaman buradayım!",
+    "nerelisin": "Ben dijitalim ama Furkan Diyarbakırlı. 🇹🇷",
+    "hahaha": "Ahaha! Çok komiksin 😂",
+    "ahahaha": "Ahahah, gülmek sana çok yakışıyor! 😆"
   };
 
-  // Gülme ve rastgele tepkiler
-  const laughResponses = [
-    "Ahaha çok güldüm! 😂",
-    "Senin espri anlayışın mükemmel! 😁",
-    "Hahaha, güldürdün beni!",
-    "Ahah, bu çok komikti!",
-    "Karnıma ağrılar girdi gülmekten! 🤣"
-  ];
-
-  // 20 farklı rastgele öneri listesi
+  // 20 farklı rastgele öneri
   const suggestions = [
     "Bunu anlamadım. Belki şunu sorabilirsin: 'hava nasıl?'",
     "Hmm, kafam karıştı! 'şaka yap' diye sorabilirsin 😁",
-    "Bu zor bir soru. Belki 'film öner' denemelisin.",
-    "Tam çözemedim. 'motivasyon ver' diyebilirsin.",
+    "Belki 'film öner' denemek istersin.",
+    "Tam çözemedim. 'motivasyon ver' diyebilirim.",
     "Bunu bilemedim ama 'kitap öner' diyebilirim.",
     "Hadi bana 'favori renk' sor, eğlenceli bir cevabım var!",
     "Hmm... 'Furkan kimdir?' diye sor istersen.",
@@ -168,49 +193,34 @@
     "Bu konuda bilgim yok ama 'günaydın' diyebilirim!",
     "Bilmiyorum ama 'saat kaç' sorarsan sana söyleyebilirim.",
     "Bu zordu! 'beni motive et' diye sor, sana enerji vereyim!",
-    "Bir öneri istersen 'film öner' diyebilirsin.",
-    "Kitap okumak için bana 'kitap öner' diyebilirsin.",
-    "Şarkı ruhunu açsın istiyorsan 'şarkı öner' diyebilirsin.",
-    "Motivasyon lazım mı? 'motivasyon ver' yaz!",
-    "Kahkahaya hazır mısın? 'şaka yap' yaz! 😂"
+    "Bir de 'kitap öner' sor, sana klasiklerden bahsedeyim.",
+    "İstersen 'film öner' sor, güzel tavsiyelerim var.",
+    "Sana 'şarkı öner' desem? 🎵",
+    "Belki 'güzel miyim' sorusu hoş olur.",
+    "Kodla ilgili bir şey sorabilirsin!"
   ];
 
-  // Dinamik gün, saat ve isim hafızası
+  // --- Dinamik yanıt fonksiyonu ---
   function getAIResponse(msg) {
     const key = msg.toLowerCase().trim();
 
-    // Kullanıcı adını kaydet
-    if (key.startsWith("benim adım")) {
-      userName = msg.split(" ")[2] || "";
-      return `Memnun oldum ${userName}! 😊`;
-    }
-
-    // Adını hatırlatma
-    if (key.includes("adım ne") && userName) {
-      return `Adın ${userName}, unutur muyum hiç? 😉`;
-    }
-
-    // Gülme tepkileri
-    if (key.includes("hahaha") || key.includes("ahah") || key.includes("ahhaha")) {
-      return laughResponses[Math.floor(Math.random() * laughResponses.length)];
-    }
-
-    // Dinamik gün
     if (key.includes("günlerden ne") || key.includes("hangi gün")) {
       const today = days[new Date().getDay()];
       return `Bugün ${today}.`;
     }
 
-    // Dinamik saat
     if (key.includes("saat kaç")) {
       const now = new Date();
       const time = now.toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" });
       return `Şu an saat ${time}.`;
     }
 
-    return aiResponses[key] || suggestions[Math.floor(Math.random() * suggestions.length)];
+    return typeof aiResponses[key] === "function"
+      ? aiResponses[key]()
+      : aiResponses[key] || suggestions[Math.floor(Math.random() * suggestions.length)];
   }
 
+  // --- Mesaj gönderme fonksiyonu ---
   function sendMessage() {
     const input = document.getElementById("ai-input");
     const messages = document.getElementById("ai-messages");
